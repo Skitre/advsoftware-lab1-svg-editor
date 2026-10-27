@@ -7,6 +7,7 @@ export class SvgDocument {
   private root = new Group('__canvas__');
   private canvasWidth: number;
   private canvasHeight: number;
+  private importedViewBox?: string;
 
   constructor(width = 800, height = 600) {
     this.canvasWidth = Numbers.positive(width, 'canvas width');
@@ -16,10 +17,25 @@ export class SvgDocument {
   get height(): number { return this.canvasHeight; }
   get children(): readonly Shape[] { return this.root.children; }
   get count(): number { return this.all().length; }
+  get viewBox(): string { return this.importedViewBox ?? `0 0 ${this.width} ${this.height}`; }
+
+  setViewBox(value: string): void {
+    const parts = value.trim().split(/[\s,]+/).map(part => Numbers.parse(part, 'viewBox'));
+    if (parts.length !== 4) throw new Error('viewBox requires four numbers');
+    Numbers.positive(parts[2]!, 'viewBox width'); Numbers.positive(parts[3]!, 'viewBox height');
+    this.importedViewBox = parts.join(' ');
+  }
+
+  importCanvasAttribute(attribute: string, value: string): void { this.root.importAttribute(attribute, value); }
+
+  canvasPresentation(): Readonly<Record<string, string>> {
+    const { id: _id, ...attributes } = this.root.attributes();
+    return attributes;
+  }
 
   resize(width: number, height: number): void {
     Numbers.positive(width, 'canvas width'); Numbers.positive(height, 'canvas height');
-    this.canvasWidth = width; this.canvasHeight = height;
+    this.canvasWidth = width; this.canvasHeight = height; this.importedViewBox = undefined;
   }
 
   all(): readonly Shape[] {
@@ -133,6 +149,7 @@ export class SvgDocument {
   clone(): SvgDocument {
     const copy = new SvgDocument(this.width, this.height);
     copy.root = this.root.clone();
+    copy.importedViewBox = this.importedViewBox;
     return copy;
   }
 }
