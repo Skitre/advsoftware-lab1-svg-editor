@@ -1,0 +1,30 @@
+@startuml
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName SansSerif
+skinparam ArrowColor #46607D
+skinparam componentBackgroundColor #EDF4FB
+skinparam componentBorderColor #46607D
+top to bottom direction
+scale max 850 width
+component "main.ts\nComposition root" as main
+component "cli\nRepl / Lexer\nCommandFactory / TreeFormatter" as cli
+component "application\nEditorSession / History\nEditCommand / concrete commands" as app
+interface "DocumentStore\napplication port" as port
+component "domain\nSvgDocument / Shape / Group\nRect / Circle / Ellipse / Line / Text\nShapeFactory / Numbers" as domain
+component "infrastructure\nFileDocumentStore / SvgCodec" as infra
+main --> cli : assemble
+main --> app : assemble
+main --> infra : inject adapter
+cli --> app : execute
+cli --> domain : create / inspect
+app --> domain : edit / clone
+app --> port : read / write
+infra ..|> port : implement
+infra --> domain : parse / serialize
+note bottom of domain
+No dependency on Node IO, XML, or CLI.
+Name dispatch exists only in the two factories.
+end note
+@enduml
