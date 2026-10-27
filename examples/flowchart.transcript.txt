@@ -1,0 +1,27 @@
+
+> advsoftware-lab1-svg-editor@0.1.0 cli
+> tsx src/main.ts
+
+svg-editor 0.1 — type 'help' for commands
+canvas 800x600 created
+g#flowchart created
+g#node1 created in g#flowchart
+rect#start created in g#node1
+text#start-label created in g#node1
+g#node2 created in g#flowchart
+rect#process created in g#node2
+text#process-label created in g#node2
+line#arrow1 created in g#flowchart
+g#node2 moved by (0,100)
+undone: g#node2 moved by (0,100)
+text#process-label updated: text="处理数据 v2"
+svg (800x600)
+└── g#flowchart
+    ├── g#node1
+    │   ├── rect#start  x=120 y=100 w=160 h=60  fill=#4a90d9
+    │   └── text#start-label  (155,135) "开始"
+    ├── g#node2
+    │   ├── rect#process  x=520 y=100 w=160 h=60  fill=#f5a623
+    │   └── text#process-label  (545,135) "处理数据 v2"
+    └── line#arrow1  (280,130) -> (520,130)  stroke=black
+saved to examples/flowchart.svg (8 elements)
