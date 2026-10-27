@@ -39,7 +39,7 @@ export class ShapeFactory {
 
   fromSvg(type: string, id: string, attributes: Readonly<Record<string, string>>, content: string): Shape {
     const definition = this.definition(type);
-    const shape = definition.build(id, definition.keys.map(key => Numbers.parse(attributes[key] ?? '0', key)), content);
+    const shape = definition.build(id, definition.keys.map(key => Numbers.parse((attributes[key] ?? '0').trim().replace(/px$/, ''), key)), content);
     for (const [attribute, value] of Object.entries(attributes)) {
       if (attribute !== 'id' && !definition.keys.includes(attribute)) shape.importAttribute(attribute, value);
     }

@@ -29,7 +29,8 @@ export class SvgCodec {
     }
 
     // Reserve explicit IDs across the entire file before assigning any generated ones.
-    const reserved = new Set<string>();
+    const rootId = root.getAttribute('id');
+    const reserved = new Set<string>(rootId ? [rootId] : []);
     const elements = Array.from(root.getElementsByTagName('*'));
     for (const element of elements) {
       this.assertNamespace(element);

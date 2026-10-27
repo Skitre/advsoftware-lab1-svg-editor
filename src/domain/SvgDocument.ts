@@ -8,6 +8,7 @@ export class SvgDocument {
   private canvasWidth: number;
   private canvasHeight: number;
   private importedViewBox?: string;
+  private svgId?: string;
 
   constructor(width = 800, height = 600) {
     this.canvasWidth = Numbers.positive(width, 'canvas width');
@@ -26,11 +27,17 @@ export class SvgDocument {
     this.importedViewBox = parts.join(' ');
   }
 
-  importCanvasAttribute(attribute: string, value: string): void { this.root.importAttribute(attribute, value); }
+  importCanvasAttribute(attribute: string, value: string): void {
+    if (attribute === 'id') {
+      new Group(value); // Reuse the same identity validation as drawable elements.
+      this.assertAvailable(value);
+      this.svgId = value;
+    } else this.root.importAttribute(attribute, value);
+  }
 
   canvasPresentation(): Readonly<Record<string, string>> {
     const { id: _id, ...attributes } = this.root.attributes();
-    return attributes;
+    return this.svgId === undefined ? attributes : { id: this.svgId, ...attributes };
   }
 
   resize(width: number, height: number): void {
@@ -74,7 +81,7 @@ export class SvgDocument {
   }
 
   assertAvailable(id: string): void {
-    if (this.all().some(shape => shape.id === id)) throw new Error(`id already exists: ${id}`);
+    if (this.svgId === id || this.all().some(shape => shape.id === id)) throw new Error(`id already exists: ${id}`);
   }
 
   create(shape: Shape, containerId?: string): void {
@@ -150,6 +157,7 @@ export class SvgDocument {
     const copy = new SvgDocument(this.width, this.height);
     copy.root = this.root.clone();
     copy.importedViewBox = this.importedViewBox;
+    copy.svgId = this.svgId;
     return copy;
   }
 }

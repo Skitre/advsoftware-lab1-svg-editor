@@ -1,0 +1,21 @@
+name: CI
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - name: Replay the assignment example with compiled JavaScript
+        run: node dist/main.js < examples/flowchart.commands
+      - name: Ensure the generated SVG matches the committed artifact
+        run: git diff --exit-code -- examples/flowchart.svg

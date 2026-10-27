@@ -72,3 +72,12 @@ test('real file IO handles spaces, missing files, failing writes and temporary c
     assert.deepEqual(readdirSync(dir), ['a diagram.svg']);
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
+
+test('root identity is preserved and reserved, and SVG pixel geometry imports correctly', () => {
+  const { document, warnings } = codec.decode('<svg id="rect1"><rect x="10px" width="20px"/></svg>');
+  assert.deepEqual(warnings, ['warning: assigned id rect2 to unnamed <rect>']);
+  assert.equal(document.find('rect2').geometry().x, 10);
+  assert.match(codec.encode(document.clone()), /id="rect1"/);
+  assert.throws(() => document.create(new ShapeFactory().create('g', 'rect1', [])), /id already exists/);
+  assert.throws(() => codec.decode('<svg id="same"><rect id="same"/></svg>'), /id already exists: same/);
+});

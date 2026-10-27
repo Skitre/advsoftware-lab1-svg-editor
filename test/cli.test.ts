@@ -70,3 +70,20 @@ test('assignment flowchart script builds expected hierarchy and coordinates', ()
   assert.equal(editor.snapshot().find('process').geometry().y, 100);
   assert.equal(editor.snapshot().find('process-label').textContent, '处理数据 v2');
 });
+
+test('every edit command restores exact full document on undo and redo', () => {
+  const editor = new EditorSession(new MemoryDocumentStore()); const commands = new CommandFactory(editor);
+  const run = (line: string) => commands.execute(lexer.tokenize(line));
+  const state = () => editor.snapshot().all().map(shape => ({
+    id: shape.id, parent: editor.snapshot().parentLabel(shape.id), attributes: shape.attributes(), text: shape.textContent,
+  }));
+  for (const line of ['init', 'create g outer', 'create g nested in outer',
+    'create rect a 1 2 3 4 in nested', 'create circle b 2 3 4 in outer', 'create text t 1 2 "original"']) run(line);
+  for (const line of ['create ellipse e 0 0 1 2', 'move outer 5 6', 'scale outer 2',
+    'set t text "changed"', 'set outer fill red', 'front nested', 'back nested',
+    'addto nested b', 'group pair a b', 'ungroup pair', 'delete nested']) {
+    const before = state(); run(line); const after = state();
+    run('undo'); assert.deepEqual(state(), before, `undo ${line}`);
+    run('redo'); assert.deepEqual(state(), after, `redo ${line}`);
+  }
+});
