@@ -35,6 +35,6 @@ test('startup problems are reported with error: lines and the editor still start
   assert.equal(missing.output.toString('utf8'), `error: invalid plugin config\n${expected}`);
   assert.equal(missing.status, 0);
   const usage = runner.run('cli-2-flowchart', ['--bogus']);
-  assert.equal(usage.output.toString('utf8'), 'error: usage: svg-editor [--config <plugins.config.json>]\n');
+  assert.equal(usage.output.toString('utf8'), 'error: usage: svg-editor [--config <plugins.config.json>] [--list-plugins]\n');
   assert.equal(usage.status, 2);
 });

@@ -35,6 +35,11 @@ for (const source of builtins) await app.installer.install(source);
 if (options.configPath === undefined) for (const source of codeAssembled) await app.installer.install(source);
 else await app.loader.load(options.configPath); // Method B: plugins.config.json decides.
 
+if (options.listPlugins) {
+  for (const name of app.installer.installed()) process.stdout.write(`${name}\n`);
+  process.exit(0);
+}
+
 const interactive = Boolean(process.stdin.isTTY && process.stdout.isTTY);
 const success = await app.run(process.stdin, process.stdout, process.stderr, interactive);
 if (!success && !interactive) process.exitCode = 1;

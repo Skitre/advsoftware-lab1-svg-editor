@@ -56,6 +56,14 @@ export class TranscriptRunner {
     }
   }
 
+  /** Installed plugins (with options) of an assembly, via `--list-plugins`. */
+  plugins(args: readonly string[] = []): readonly string[] {
+    const result = spawnSync(process.execPath, [this.tsx, this.entry, '--list-plugins', ...args], { encoding: 'utf8', input: '' });
+    if (result.error) throw result.error;
+    if (result.status !== 0 || result.stderr) throw new Error(`--list-plugins failed: ${result.stderr}`);
+    return result.stdout.split('\n').filter(Boolean);
+  }
+
   expected(session: string): TranscriptResult {
     const root = join(this.transcripts, 'expected', session);
     const filesDir = join(root, 'files');

@@ -20,6 +20,8 @@ export type PluginSource = {
  * Any failure is reported and rolls back every staged registration of that plugin.
  */
 export class PluginInstaller {
+  private readonly names: string[] = [];
+
   constructor(private readonly extensions: ExtensionPoints, private readonly session: EditorSession,
     private readonly diagnostics: Diagnostics) {}
 
@@ -52,8 +54,13 @@ export class PluginInstaller {
       return this.reject(`plugin manifest mismatch: ${name} (declared: ${manifest.contributes.format()}, registered: ${registered.format()})`);
     }
     context.commit(this.session);
+    const options = source.options ?? {};
+    this.names.push(Object.keys(options).length ? `${name} ${JSON.stringify(options)}` : name);
     return true;
   }
+
+  /** Successfully installed plugins in installation order, each with its options when given. */
+  installed(): readonly string[] { return [...this.names]; }
 
   private reject(message: string): false {
     this.diagnostics.error(message);
