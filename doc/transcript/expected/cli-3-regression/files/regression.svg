@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400" viewBox="0 0 500 400">
+  <g id="scene">
+    <rect id="r1" x="20" y="25" width="120" height="50" fill="blue" stroke="#333" stroke-width="2"/>
+    <circle id="c1" cx="110" cy="105" r="20" fill="red"/>
+  </g>
+  <g id="pair">
+    <line id="l1" x1="5" y1="0" x2="100" y2="100" stroke="black"/>
+    <ellipse id="e1" cx="50" cy="60" rx="30" ry="20"/>
+  </g>
+  <text id="t1" x="20" y="40">My Diagram v2</text>
+  <text id="t2" x="0" y="0">hello in outer "quoted"</text>
+</svg>

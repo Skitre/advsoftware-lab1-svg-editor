@@ -1,0 +1,130 @@
+svg-editor 0.1 — type 'help' for commands
+Commands:
+  init [w] [h]
+  read <file.svg>
+  save [file.svg]
+  canvas [w h]
+  create <type> <id> [params...] [in <containerId>]
+  delete <id>
+  move <id> <dx> <dy>
+  scale <id> <factor>
+  set <id> <attr> <value>
+  group <newGid> <id1> [id2...]
+  ungroup <gid>
+  addto <gid> <id>
+  front <id>
+  back <id>
+  tree [id]
+  show <id>
+  help
+  undo
+  redo
+Shape parameters (append optional: in <containerId>):
+  rect <id> <x> <y> <w> <h> [fill]
+  circle <id> <cx> <cy> <r> [fill]
+  ellipse <id> <cx> <cy> <rx> <ry> [fill]
+  line <id> <x1> <y1> <x2> <y2> [stroke]
+  text <id> <x> <y> "content"
+  g <id>
+set: fill / stroke / stroke-width; shape geometry; text content via text.
+Comments start with #. Use double quotes for spaces. Ctrl-D exits.
+error: no document. use 'init' or 'read' first
+error: no document. use 'init' or 'read' first
+error: unknown command: frobnicate
+canvas 400x300 created
+canvas 400x300
+error: usage: canvas [w h]
+canvas resized to 500x400
+error: undo not allowed after io command
+rect#r1 created
+circle#c1 created
+ellipse#e1 created
+line#l1 created
+text#t1 created
+text#t2 created
+g#scene created
+error: id already exists: r1
+error: no such container: nowhere
+error: not a container: r1
+error: invalid parameters for rect
+error: unknown shape type: hexagon (is the plugin loaded?)
+error: unknown shape type: box (is the plugin loaded?)
+rect#r1 moved into g#scene
+circle#c1 moved into g#scene
+g#inner created in g#scene
+ellipse#e2 created in g#inner
+error: cannot move a container into its own descendant: scene
+g#scene moved by (10,5)
+error: invalid number for dx: x
+g#inner scaled by 2
+error: scale factor must be positive
+error: scale factor must be positive
+rect#r1 updated: fill="blue"
+rect#r1 updated: stroke="#333"
+rect#r1 updated: stroke-width="2"
+error: stroke-width must be nonnegative
+rect#r1 updated: width="120"
+text#t1 updated: text="My Diagram v2"
+error: unknown attribute: label
+error: unknown attribute: text
+line#l1 updated: x1="5"
+g#inner updated: fill="green"
+ellipse#e1 moved to front
+g#scene moved to back
+g#pair created with 2 children
+error: cannot group a container into its own descendant: scene
+error: duplicate group member
+error: cannot ungroup top-level container: pair
+g#inner ungrouped
+error: not a container: r1
+svg (500x400)
+├── g#scene
+│   ├── rect#r1  x=20 y=25 w=120 h=50  fill=blue  stroke=#333  stroke-width=2
+│   ├── circle#c1  cx=110 cy=105 r=20  fill=red
+│   └── ellipse#e2  cx=22 cy=14 rx=6 ry=8
+├── g#pair
+│   ├── line#l1  (5,0) -> (100,100)  stroke=black
+│   └── ellipse#e1  cx=50 cy=60 rx=30 ry=20
+├── text#t1  (20,40) "My Diagram v2"
+└── text#t2  (0,0) "hello in outer \"quoted\""
+g#scene
+├── rect#r1  x=20 y=25 w=120 h=50  fill=blue  stroke=#333  stroke-width=2
+├── circle#c1  cx=110 cy=105 r=20  fill=red
+└── ellipse#e2  cx=22 cy=14 rx=6 ry=8
+circle#c1  parent=g#scene
+  cx=110 cy=105 r=20
+  fill="red"
+rect#r1  parent=g#scene
+  x=20 y=25 width=120 height=50
+  fill="blue"
+  stroke="#333"
+  stroke-width="2"
+text#t2  parent=svg
+  x=0 y=0
+  text="hello in outer \"quoted\""
+error: no such shape: nope
+ellipse#e2 deleted
+error: no such shape: nope
+undone: ellipse#e2 deleted
+redone: ellipse#e2 deleted
+undone: ellipse#e2 deleted
+undone: g#inner ungrouped
+redone: g#inner ungrouped
+redone: ellipse#e2 deleted
+error: nothing to redo
+error: no file path. use save <file.svg>
+saved to regression.svg (8 elements)
+error: undo not allowed after io command
+error: cannot read file: missing.svg
+read regression.svg (8 elements)
+svg (500x400)
+├── g#scene
+│   ├── rect#r1  x=20 y=25 w=120 h=50  fill=blue  stroke=#333  stroke-width=2
+│   └── circle#c1  cx=110 cy=105 r=20  fill=red
+├── g#pair
+│   ├── line#l1  (5,0) -> (100,100)  stroke=black
+│   └── ellipse#e1  cx=50 cy=60 rx=30 ry=20
+├── text#t1  (20,40) "My Diagram v2"
+└── text#t2  (0,0) "hello in outer \"quoted\""
+error: undo not allowed after io command
+g#scene  parent=svg

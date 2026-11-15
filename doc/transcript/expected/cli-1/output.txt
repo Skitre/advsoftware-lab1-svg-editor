@@ -1,0 +1,33 @@
+svg-editor 0.1 — type 'help' for commands
+canvas 800x600 created
+rect#bg created
+text#title created
+circle#c1 created
+rect#box created
+g#markers created with 2 children
+svg (800x600)
+├── rect#bg  x=0 y=0 w=800 h=600  fill=#ffffff
+├── text#title  (20,40) "My Diagram"
+└── g#markers
+    ├── circle#c1  cx=100 cy=100 r=20  fill=red
+    └── rect#box  x=200 y=80 w=60 h=60  fill=#3366ff
+circle#c1 moved by (30,0)
+undone: circle#c1 moved by (30,0)
+redone: circle#c1 moved by (30,0)
+text#title updated: text="My Diagram v2"
+undone: text#title updated: text="My Diagram v2"
+error: cannot group a container into its own descendant: markers
+rect#box deleted
+undone: rect#box deleted
+saved to demo.svg (5 elements)
+error: undo not allowed after io command
+warning: assigned id rect1 to unnamed <rect>
+read other.svg (7 elements)
+svg (400x300)
+├── rect#rect1  x=0 y=0 w=400 h=300  fill=#ffffff
+├── text#t1  (10,290) "imported"
+├── circle#c1  cx=50 cy=50 r=10
+├── g#g1
+│   ├── rect#r2  x=0 y=0 w=10 h=10
+│   └── circle#c2  cx=5 cy=5 r=2
+└── ellipse#e1  cx=1 cy=2 rx=3 ry=4

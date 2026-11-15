@@ -1,0 +1,82 @@
+# Phase 1 regression: every built-in command, help text, and the documented error paths.
+help
+tree
+undo
+frobnicate
+
+init 400 300
+canvas
+canvas 1
+canvas 500 400
+undo
+
+create rect r1 10 20 100 50 #eee
+create circle c1 100 100 20 red
+create ellipse e1 50 60 30 20
+create line l1 0 0 100 100 black
+create text t1 20 40 "My Diagram"
+create text t2 0 0 "hello in outer \"quoted\""
+create g scene
+create rect r1 0 0 1 1
+create rect r2 0 0 10 10 in nowhere
+create rect r2 0 0 10 10 in r1
+create rect r9 1 2
+create hexagon h1 0 0
+create box n1 120 100 160 60 "开始"
+
+addto scene r1
+addto scene c1
+create g inner in scene
+create ellipse e2 1 2 3 4 in inner
+addto inner scene
+move scene 10 5
+move t1 x 1
+scale inner 2
+scale c1 0
+scale c1 -1
+
+set r1 fill blue
+set r1 stroke "#333"
+set r1 stroke-width 2
+set r1 stroke-width -1
+set r1 width 120
+set t1 text "My Diagram v2"
+set r1 label nope
+set c1 text nope
+set l1 x1 5
+set inner fill green
+
+front e1
+back scene
+group pair e1 l1
+group bad inner scene
+group dup r1 r1
+ungroup pair
+ungroup inner
+ungroup r1
+
+tree
+tree scene
+show c1
+show r1
+show t2
+show nope
+
+delete e2
+delete nope
+undo
+redo
+undo
+undo
+redo
+redo
+redo
+
+save
+save regression.svg
+undo
+read missing.svg
+read regression.svg
+tree
+redo
+show scene
