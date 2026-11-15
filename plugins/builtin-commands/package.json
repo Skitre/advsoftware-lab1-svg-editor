@@ -1,0 +1,19 @@
+{
+  "name": "@svgframe/plugin-builtin-commands",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Phase 1 commands: document, edit, display and undo/redo commands",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "@svgframe/kernel": "0.2.0"
+  },
+  "contributes": {
+    "commands": ["init", "read", "save", "canvas", "create", "delete", "move", "scale", "set", "group",
+      "ungroup", "addto", "front", "back", "tree", "show", "help", "undo", "redo"]
+  }
+}

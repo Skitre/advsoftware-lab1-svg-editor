@@ -1,11 +1,10 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { ShapeFactory } from '../src/domain/ShapeFactory.js';
-import { SvgDocument } from '../src/domain/SvgDocument.js';
-import { Group } from '../src/domain/Group.js';
-import { Rect } from '../src/domain/Rect.js';
+import { Group, SvgDocument } from '@svgframe/kernel/host';
+import { Rect } from '../plugins/builtin-shapes/src/Rect.js';
+import { TestEditor } from './support/TestEditor.js';
 
-const factory = new ShapeFactory();
+const factory = (await TestEditor.create()).shapes;
 
 test('all six shapes have polymorphic movement, scaling, cloning and default style', () => {
   const inputs = [

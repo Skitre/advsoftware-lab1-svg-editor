@@ -2,11 +2,8 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { spawnSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
-import { EditorSession } from '../src/application/EditorSession.js';
-import { CommandFactory } from '../src/cli/CommandFactory.js';
-import { Lexer } from '../src/cli/Lexer.js';
-import { TreeFormatter } from '../src/cli/TreeFormatter.js';
-import { MemoryDocumentStore } from './support/MemoryDocumentStore.js';
+import { Lexer } from '@svgframe/kernel/host';
+import { TestEditor } from './support/TestEditor.js';
 
 const lexer = new Lexer();
 
@@ -19,9 +16,9 @@ test('lexer supports quoted empty/space/escaped text, preserves hex colors and c
   assert.throws(() => lexer.tokenize('set t text "x"junk'), /whitespace/);
 });
 
-test('every command is wired; group edits and displays preserve undo/redo', () => {
-  const editor = new EditorSession(new MemoryDocumentStore()); const commands = new CommandFactory(editor);
-  const run = (line: string) => commands.execute(lexer.tokenize(line));
+test('every command is wired; group edits and displays preserve undo/redo', async () => {
+  const app = await TestEditor.create(); const editor = app.session;
+  const run = (line: string) => app.run(line);
   assert.match(run('help').join('\n'), /ungroup/);
   assert.throws(() => run('tree'), /no document/);
   run('init'); run('create g outer'); run('create g inner in outer');
@@ -38,18 +35,18 @@ test('every command is wired; group edits and displays preserve undo/redo', () =
   assert.match(run('tree')[0]!, /svg \(200x300\)/);
 });
 
-test('in suffix does not confuse quoted text and invalid syntax never changes state', () => {
-  const editor = new EditorSession(new MemoryDocumentStore()); const commands = new CommandFactory(editor);
-  const run = (line: string) => commands.execute(lexer.tokenize(line));
+test('in suffix does not confuse quoted text and invalid syntax never changes state', async () => {
+  const app = await TestEditor.create(); const editor = app.session;
+  const run = (line: string) => app.run(line);
   run('init'); run('create g g'); run('create text t 0 0 "in" in g');
   assert.equal(editor.snapshot().find('t').textContent, 'in');
   run('create text empty 0 0 ""');
-  const before = new TreeFormatter().tree(editor.snapshot());
+  const before = run('tree');
   for (const line of ['move t 2', 'scale t 0', 'create rect t 0 0 1 1', 'create hexagon h',
     'create g x in missing', 'create g x in t', 'canvas 200', 'set t id other', 'undo extra',
     'group bad g t', 'ungroup g', 'addto g g', 'move t NaN 1', 'bogus']) {
     assert.throws(() => run(line), Error, line);
-    assert.deepEqual(new TreeFormatter().tree(editor.snapshot()), before, line);
+    assert.deepEqual(run('tree'), before, line);
   }
   run('undo'); assert.throws(() => editor.snapshot().find('empty'), /no such shape/);
 });
@@ -62,18 +59,18 @@ test('CLI process recovers from errors, uses stderr, returns nonzero for failed 
   assert.match(result.stdout, /x=5 y=6 width=10 height=20/);
 });
 
-test('assignment flowchart script builds expected hierarchy and coordinates', () => {
-  const editor = new EditorSession(new MemoryDocumentStore()); const commands = new CommandFactory(editor);
-  for (const line of readFileSync('examples/flowchart.commands', 'utf8').split('\n')) commands.execute(lexer.tokenize(line));
+test('assignment flowchart script builds expected hierarchy and coordinates', async () => {
+  const app = await TestEditor.create(); const editor = app.session;
+  for (const line of readFileSync('examples/flowchart.commands', 'utf8').split('\n')) app.run(line);
   assert.equal(editor.snapshot().count, 8);
   assert.equal(editor.snapshot().parentLabel('process'), 'g#node2');
   assert.equal(editor.snapshot().find('process').geometry().y, 100);
   assert.equal(editor.snapshot().find('process-label').textContent, '处理数据 v2');
 });
 
-test('every edit command restores exact full document on undo and redo', () => {
-  const editor = new EditorSession(new MemoryDocumentStore()); const commands = new CommandFactory(editor);
-  const run = (line: string) => commands.execute(lexer.tokenize(line));
+test('every edit command restores exact full document on undo and redo', async () => {
+  const app = await TestEditor.create(); const editor = app.session;
+  const run = (line: string) => app.run(line);
   const state = () => editor.snapshot().all().map(shape => ({
     id: shape.id, parent: editor.snapshot().parentLabel(shape.id), attributes: shape.attributes(), text: shape.textContent,
   }));

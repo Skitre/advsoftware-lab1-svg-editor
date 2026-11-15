@@ -1,5 +1,4 @@
-import type { DocumentStore } from '../../src/application/DocumentStore.js';
-import type { SvgDocument } from '../../src/domain/SvgDocument.js';
+import type { DocumentStore, SvgDocument } from '@svgframe/kernel/host';
 export class MemoryDocumentStore implements DocumentStore {
   private readonly files = new Map<string, SvgDocument>();
   read(path: string): { document: SvgDocument; warnings: readonly string[] } {

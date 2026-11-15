@@ -15,7 +15,7 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check
-      - name: Replay the assignment example with compiled JavaScript
-        run: node dist/main.js < examples/flowchart.commands
+      - name: Replay the assignment example through the launcher
+        run: bin/svg-editor < examples/flowchart.commands
       - name: Ensure the generated SVG matches the committed artifact
         run: git diff --exit-code -- examples/flowchart.svg

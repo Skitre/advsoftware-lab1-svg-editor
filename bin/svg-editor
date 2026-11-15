@@ -1,0 +1,5 @@
+#!/bin/sh
+# Starts the SVG editor from any working directory; TypeScript runs through tsx.
+# Usage: svg-editor [--config <plugins.config.json>]
+root=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+exec node "$root/node_modules/tsx/dist/cli.mjs" "$root/src/main.ts" "$@"

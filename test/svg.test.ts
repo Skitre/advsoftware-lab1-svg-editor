@@ -3,15 +3,14 @@ import { test } from 'node:test';
 import { mkdtempSync, readFileSync, rmSync, readdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { SvgCodec } from '../src/infrastructure/SvgCodec.js';
-import { FileDocumentStore } from '../src/infrastructure/FileDocumentStore.js';
-import { ShapeFactory } from '../src/domain/ShapeFactory.js';
-import { SvgDocument } from '../src/domain/SvgDocument.js';
+import { FileDocumentStore, SvgDocument } from '@svgframe/kernel/host';
+import { TestEditor } from './support/TestEditor.js';
 
-const codec = new SvgCodec();
+const editor = await TestEditor.create();
+const codec = editor.codec();
 
 test('all shapes, hierarchy, styles and special text survive SVG round trip', () => {
-  const document = new SvgDocument(400.5, 300); const factory = new ShapeFactory();
+  const document = new SvgDocument(400.5, 300); const factory = editor.shapes;
   document.create(factory.create('g', 'scene', []));
   const definitions = [
     ['rect', ['1', '2', '3', '4', '#abc']], ['circle', ['1', '2', '3']],
@@ -63,7 +62,7 @@ test('data-kind box reads as ordinary group in phase 1', () => {
 test('real file IO handles spaces, missing files, failing writes and temporary cleanup', () => {
   const dir = mkdtempSync(join(tmpdir(), 'svg-editor-'));
   try {
-    const store = new FileDocumentStore(); const path = join(dir, 'a diagram.svg');
+    const store = new FileDocumentStore(codec); const path = join(dir, 'a diagram.svg');
     store.write(path, new SvgDocument()); assert.match(readFileSync(path, 'utf8'), /<svg/);
     assert.equal(store.read(path).document.width, 800);
     assert.throws(() => store.read(join(dir, 'missing')), /cannot read file:/);
@@ -78,6 +77,6 @@ test('root identity is preserved and reserved, and SVG pixel geometry imports co
   assert.deepEqual(warnings, ['warning: assigned id rect2 to unnamed <rect>']);
   assert.equal(document.find('rect2').geometry().x, 10);
   assert.match(codec.encode(document.clone()), /id="rect1"/);
-  assert.throws(() => document.create(new ShapeFactory().create('g', 'rect1', [])), /id already exists/);
+  assert.throws(() => document.create(editor.shapes.create('g', 'rect1', [])), /id already exists/);
   assert.throws(() => codec.decode('<svg id="same"><rect id="same"/></svg>'), /id already exists: same/);
 });
