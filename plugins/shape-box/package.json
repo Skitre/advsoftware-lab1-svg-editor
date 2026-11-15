@@ -1,0 +1,20 @@
+{
+  "name": "@svgframe/plugin-shape-box",
+  "version": "0.2.0",
+  "private": true,
+  "description": "box: a titled frame (g + rect + text) with fill/label semantics and a (box) tree label",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "@svgframe/kernel": "0.2.0"
+  },
+  "contributes": {
+    "shapes": ["box"],
+    "attributes": ["box-attributes"],
+    "decorators": ["box-type-label"]
+  }
+}
