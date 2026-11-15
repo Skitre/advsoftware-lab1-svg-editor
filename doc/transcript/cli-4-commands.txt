@@ -1,0 +1,31 @@
+# phase_cli_2 §2: the stats and dir command plugins.
+# dir works without a document; stats needs one.
+dir
+stats
+dir extra
+help
+
+init 800 600
+stats
+create g scene
+create rect r1 0 0 10 10 in scene
+create text t1 5 5 "a" in scene
+create circle c1 1 1 1
+create g empty
+create rect r2 1 1 1 1
+stats
+
+# Display commands never enter the undo stack: undo reverts the move, not stats or dir.
+move r1 5 5
+stats
+dir
+undo
+redo
+undo
+tree
+stats extra
+
+read other.svg
+stats
+dir
+undo

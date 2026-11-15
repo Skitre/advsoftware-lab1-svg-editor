@@ -1,0 +1,18 @@
+{
+  "name": "@svgframe/plugin-command-dir",
+  "version": "0.2.0",
+  "private": true,
+  "description": "dir command: lists the working directory through a file-system adapter",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "@svgframe/kernel": "0.2.0"
+  },
+  "contributes": {
+    "commands": ["dir"]
+  }
+}

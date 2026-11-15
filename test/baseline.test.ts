@@ -5,13 +5,12 @@ import { TranscriptRunner } from './support/TranscriptRunner.js';
 
 // Expected results were generated from the `final` tag by scripts/generate-baseline.sh and must
 // stay byte-identical while the CLI is refactored into a plugin framework. "Built-in only" means
-// every optional plugin is disabled: method B with an empty plugin list. Method A (no arguments)
-// is compared too while the code assembly contains no optional plugins.
+// every optional plugin is disabled (method B with an empty plugin list), as phase_cli_2 §6 requires;
+// A/B equivalence with optional plugins is covered by assembly.test.ts.
 const runner = new TranscriptRunner();
 const sessions = ['cli-1', 'cli-2-flowchart', 'cli-3-regression'];
 const modes: Readonly<Record<string, readonly string[]>> = {
   'built-in only (--config builtin-only.config.json)': ['--config', resolve('doc/transcript/builtin-only.config.json')],
-  'code assembly (no arguments)': [],
 };
 
 for (const [mode, args] of Object.entries(modes)) {

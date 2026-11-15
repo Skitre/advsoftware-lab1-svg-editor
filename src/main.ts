@@ -3,6 +3,10 @@ import builtinCommands from '@svgframe/plugin-builtin-commands';
 import builtinCommandsPackage from '@svgframe/plugin-builtin-commands/package.json' with { type: 'json' };
 import builtinShapes from '@svgframe/plugin-builtin-shapes';
 import builtinShapesPackage from '@svgframe/plugin-builtin-shapes/package.json' with { type: 'json' };
+import commandDir from '@svgframe/plugin-command-dir';
+import commandDirPackage from '@svgframe/plugin-command-dir/package.json' with { type: 'json' };
+import commandStats from '@svgframe/plugin-command-stats';
+import commandStatsPackage from '@svgframe/plugin-command-stats/package.json' with { type: 'json' };
 import { EditorApplication } from './host/EditorApplication.js';
 import { LaunchOptions } from './host/LaunchOptions.js';
 import type { PluginSource } from './host/PluginInstaller.js';
@@ -19,6 +23,8 @@ const builtins: readonly PluginSource[] = [
 
 // Method A (no --config): optional plugins assembled in code, type-checked, installed in this order.
 const codeAssembled: readonly PluginSource[] = [
+  { module: '@svgframe/plugin-command-stats', plugin: commandStats, packageJson: commandStatsPackage },
+  { module: '@svgframe/plugin-command-dir', plugin: commandDir, packageJson: commandDirPackage },
 ];
 
 let options = LaunchOptions.parse([]);

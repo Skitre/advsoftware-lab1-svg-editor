@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { closeSync, copyFileSync, mkdtempSync, openSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import { closeSync, cpSync, mkdtempSync, openSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -7,13 +7,14 @@ import { fileURLToPath } from 'node:url';
 export type TranscriptResult = {
   output: Buffer;
   status: number;
-  /** Files the session created (or changed) in its working directory, keyed by name. */
+  /** Top-level files the session created (or changed) in its working directory, keyed by name. */
   files: ReadonlyMap<string, Buffer>;
 };
 
 /**
  * Black-box replay of a session file through the real CLI entry point, mirroring
- * `cli [args] < session > out 2>&1` in a fresh working directory seeded with fixtures.
+ * `cli [args] < session > out 2>&1` in a fresh working directory seeded with fixtures (recursively).
+ * The log is written outside that directory, so `dir` sees exactly the fixture content.
  * stdout and stderr share one file descriptor so their interleaving is byte-exact.
  */
 export class TranscriptRunner {
@@ -28,7 +29,7 @@ export class TranscriptRunner {
     const logdir = mkdtempSync(join(tmpdir(), 'svg-transcript-log-'));
     try {
       const fixtures = join(this.transcripts, 'fixtures');
-      for (const name of readdirSync(fixtures)) copyFileSync(join(fixtures, name), join(workdir, name));
+      cpSync(fixtures, workdir, { recursive: true });
       const logPath = join(logdir, 'output.txt');
       const log = openSync(logPath, 'w');
       let status: number | null;
@@ -41,6 +42,7 @@ export class TranscriptRunner {
       } finally { closeSync(log); }
       const files = new Map<string, Buffer>();
       for (const name of readdirSync(workdir)) {
+        if (!statSync(join(workdir, name)).isFile()) continue; // sessions only create files at top level
         const content = readFileSync(join(workdir, name));
         const fixture = join(fixtures, name);
         let original: Buffer | undefined;

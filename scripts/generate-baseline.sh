@@ -28,7 +28,7 @@ for name in "${sessions[@]}"; do
   [ -f "$input" ] || { echo "missing session: $input" >&2; exit 1; }
   run="$work/run-$name"
   mkdir -p "$run"
-  cp "$transcripts"/fixtures/* "$run"/
+  cp -R "$transcripts"/fixtures/. "$run"/
   status=0
   (cd "$run" && "$tsx" "$work/tree/src/main.ts" < "$input" > "$work/$name.out" 2>&1) || status=$?
 
@@ -38,6 +38,7 @@ for name in "${sessions[@]}"; do
   cp "$work/$name.out" "$target/output.txt"
   printf '%s\n' "$status" > "$target/status"
   for file in "$run"/*; do
+    [ -f "$file" ] || continue
     base=$(basename "$file")
     [ -e "$transcripts/fixtures/$base" ] && cmp -s "$file" "$transcripts/fixtures/$base" && continue
     cp "$file" "$target/files/$base"

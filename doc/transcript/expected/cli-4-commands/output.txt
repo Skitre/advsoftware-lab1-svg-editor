@@ -1,0 +1,69 @@
+svg-editor 0.1 — type 'help' for commands
+[DIR]  assets
+[FILE] .hidden
+[FILE] other.svg
+error: no document. use 'init' or 'read' first
+error: usage: dir
+Commands:
+  init [w] [h]
+  read <file.svg>
+  save [file.svg]
+  canvas [w h]
+  create <type> <id> [params...] [in <containerId>]
+  delete <id>
+  move <id> <dx> <dy>
+  scale <id> <factor>
+  set <id> <attr> <value>
+  group <newGid> <id1> [id2...]
+  ungroup <gid>
+  addto <gid> <id>
+  front <id>
+  back <id>
+  tree [id]
+  show <id>
+  help
+  undo
+  redo
+  stats
+  dir
+Shape parameters (append optional: in <containerId>):
+  rect <id> <x> <y> <w> <h> [fill]
+  circle <id> <cx> <cy> <r> [fill]
+  ellipse <id> <cx> <cy> <rx> <ry> [fill]
+  line <id> <x1> <y1> <x2> <y2> [stroke]
+  text <id> <x> <y> "content"
+  g <id>
+set: fill / stroke / stroke-width; shape geometry; text content via text.
+Comments start with #. Use double quotes for spaces. Ctrl-D exits.
+canvas 800x600 created
+(total 0, containers 0)
+g#scene created
+rect#r1 created in g#scene
+text#t1 created in g#scene
+circle#c1 created
+g#empty created
+rect#r2 created
+rect: 2  text: 1  circle: 1  (total 4, containers 2)
+rect#r1 moved by (5,5)
+rect: 2  text: 1  circle: 1  (total 4, containers 2)
+[DIR]  assets
+[FILE] .hidden
+[FILE] other.svg
+undone: rect#r1 moved by (5,5)
+redone: rect#r1 moved by (5,5)
+undone: rect#r1 moved by (5,5)
+svg (800x600)
+├── g#scene
+│   ├── rect#r1  x=0 y=0 w=10 h=10
+│   └── text#t1  (5,5) "a"
+├── circle#c1  cx=1 cy=1 r=1
+├── g#empty
+└── rect#r2  x=1 y=1 w=1 h=1
+error: usage: stats
+warning: assigned id rect1 to unnamed <rect>
+read other.svg (7 elements)
+rect: 2  text: 1  circle: 2  ellipse: 1  (total 6, containers 1)
+[DIR]  assets
+[FILE] .hidden
+[FILE] other.svg
+error: undo not allowed after io command

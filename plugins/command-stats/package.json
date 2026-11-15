@@ -1,0 +1,18 @@
+{
+  "name": "@svgframe/plugin-command-stats",
+  "version": "0.2.0",
+  "private": true,
+  "description": "stats command: leaf counts by shape type, total and containers",
+  "type": "module",
+  "main": "./index.ts",
+  "exports": {
+    ".": "./index.ts",
+    "./package.json": "./package.json"
+  },
+  "peerDependencies": {
+    "@svgframe/kernel": "0.2.0"
+  },
+  "contributes": {
+    "commands": ["stats"]
+  }
+}
