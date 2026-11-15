@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { closeSync, cpSync, mkdtempSync, openSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
+import { closeSync, cpSync, existsSync, mkdtempSync, openSync, readdirSync, readFileSync, rmSync, statSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -67,10 +67,12 @@ export class TranscriptRunner {
   expected(session: string): TranscriptResult {
     const root = join(this.transcripts, 'expected', session);
     const filesDir = join(root, 'files');
+    // git does not track empty directories: a session that creates no files has no files/ after checkout.
+    const names = existsSync(filesDir) ? readdirSync(filesDir) : [];
     return {
       output: readFileSync(join(root, 'output.txt')),
       status: Number(readFileSync(join(root, 'status'), 'utf8').trim()),
-      files: new Map(readdirSync(filesDir).map(name => [name, readFileSync(join(filesDir, name))])),
+      files: new Map(names.map(name => [name, readFileSync(join(filesDir, name))])),
     };
   }
 }
