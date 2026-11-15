@@ -1,0 +1,1454 @@
+{
+  "base": {
+    "ref": "final",
+    "commit": "d826d99",
+    "files": [
+      {
+        "path": "src/application/DocumentStore.ts",
+        "zone": "kernel",
+        "lines": 7,
+        "code": 5,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "Outbound port; the application does not depend on filesystem or XML packages."
+      },
+      {
+        "path": "src/application/EditorSession.ts",
+        "zone": "kernel",
+        "lines": 66,
+        "code": 63,
+        "complexity": 16,
+        "functions": 10,
+        "maxFunction": {
+          "name": "EditorSession.canvas",
+          "complexity": 5
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/History.ts",
+        "zone": "kernel",
+        "lines": 42,
+        "code": 36,
+        "complexity": 8,
+        "functions": 5,
+        "maxFunction": {
+          "name": "History.undo",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/commands/AddToCommand.ts",
+        "zone": "kernel",
+        "lines": 8,
+        "code": 9,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "AddToCommand.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/commands/CreateCommand.ts",
+        "zone": "kernel",
+        "lines": 10,
+        "code": 10,
+        "complexity": 3,
+        "functions": 2,
+        "maxFunction": {
+          "name": "CreateCommand.apply",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/commands/DeleteCommand.ts",
+        "zone": "kernel",
+        "lines": 6,
+        "code": 7,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "DeleteCommand.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/commands/EditCommand.ts",
+        "zone": "kernel",
+        "lines": 29,
+        "code": 26,
+        "complexity": 6,
+        "functions": 4,
+        "maxFunction": {
+          "name": "EditCommand.undo",
+          "complexity": 2
+        },
+        "responsibility": "Command + Memento: a command owns immutable-in-practice before/after copies."
+      },
+      {
+        "path": "src/application/commands/GroupCommand.ts",
+        "zone": "kernel",
+        "lines": 9,
+        "code": 10,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "GroupCommand.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/commands/MoveCommand.ts",
+        "zone": "kernel",
+        "lines": 9,
+        "code": 10,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "MoveCommand.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/commands/ScaleCommand.ts",
+        "zone": "kernel",
+        "lines": 9,
+        "code": 10,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "ScaleCommand.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/commands/SetCommand.ts",
+        "zone": "kernel",
+        "lines": 9,
+        "code": 10,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "SetCommand.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/commands/UngroupCommand.ts",
+        "zone": "kernel",
+        "lines": 8,
+        "code": 9,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "UngroupCommand.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/application/commands/ZOrderCommand.ts",
+        "zone": "kernel",
+        "lines": 8,
+        "code": 9,
+        "complexity": 3,
+        "functions": 2,
+        "maxFunction": {
+          "name": "ZOrderCommand.apply",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/cli/CommandArguments.ts",
+        "zone": "kernel",
+        "lines": 32,
+        "code": 31,
+        "complexity": 16,
+        "functions": 9,
+        "maxFunction": {
+          "name": "CommandArguments.creation",
+          "complexity": 5
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/cli/CommandFactory.ts",
+        "zone": "kernel",
+        "lines": 81,
+        "code": 77,
+        "complexity": 32,
+        "functions": 23,
+        "maxFunction": {
+          "name": "CommandFactory.execute",
+          "complexity": 4
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/cli/Lexer.ts",
+        "zone": "kernel",
+        "lines": 33,
+        "code": 32,
+        "complexity": 16,
+        "functions": 1,
+        "maxFunction": {
+          "name": "Lexer.tokenize",
+          "complexity": 16
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/cli/Repl.ts",
+        "zone": "kernel",
+        "lines": 26,
+        "code": 25,
+        "complexity": 8,
+        "functions": 2,
+        "maxFunction": {
+          "name": "Repl.run",
+          "complexity": 7
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/cli/Token.ts",
+        "zone": "kernel",
+        "lines": 4,
+        "code": 4,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": ""
+      },
+      {
+        "path": "src/cli/TreeFormatter.ts",
+        "zone": "kernel",
+        "lines": 33,
+        "code": 33,
+        "complexity": 13,
+        "functions": 7,
+        "maxFunction": {
+          "name": "TreeFormatter.show",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/domain/Circle.ts",
+        "zone": "kernel",
+        "lines": 13,
+        "code": 14,
+        "complexity": 4,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Circle.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/domain/Ellipse.ts",
+        "zone": "kernel",
+        "lines": 15,
+        "code": 16,
+        "complexity": 4,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Ellipse.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/domain/GeometryShape.ts",
+        "zone": "kernel",
+        "lines": 43,
+        "code": 35,
+        "complexity": 13,
+        "functions": 8,
+        "maxFunction": {
+          "name": "GeometryShape.move",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/domain/Group.ts",
+        "zone": "kernel",
+        "lines": 45,
+        "code": 44,
+        "complexity": 19,
+        "functions": 12,
+        "maxFunction": {
+          "name": "Group.insert",
+          "complexity": 4
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/domain/Line.ts",
+        "zone": "kernel",
+        "lines": 15,
+        "code": 16,
+        "complexity": 4,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Line.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/domain/Numbers.ts",
+        "zone": "kernel",
+        "lines": 25,
+        "code": 26,
+        "complexity": 9,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Numbers.finite",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/domain/Rect.ts",
+        "zone": "kernel",
+        "lines": 15,
+        "code": 16,
+        "complexity": 4,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Rect.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/domain/Shape.ts",
+        "zone": "kernel",
+        "lines": 69,
+        "code": 67,
+        "complexity": 31,
+        "functions": 21,
+        "maxFunction": {
+          "name": "Shape.set",
+          "complexity": 4
+        },
+        "responsibility": "Rich domain base: owns identity/style and defines polymorphic shape operations."
+      },
+      {
+        "path": "src/domain/ShapeFactory.ts",
+        "zone": "kernel",
+        "lines": 54,
+        "code": 51,
+        "complexity": 23,
+        "functions": 11,
+        "maxFunction": {
+          "name": "ShapeFactory.create",
+          "complexity": 8
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/domain/SvgDocument.ts",
+        "zone": "kernel",
+        "lines": 163,
+        "code": 161,
+        "complexity": 62,
+        "functions": 35,
+        "maxFunction": {
+          "name": "SvgDocument.group",
+          "complexity": 8
+        },
+        "responsibility": "Aggregate root: identity uniqueness, ownership, ordering, and cycle checks."
+      },
+      {
+        "path": "src/domain/Text.ts",
+        "zone": "kernel",
+        "lines": 18,
+        "code": 19,
+        "complexity": 7,
+        "functions": 6,
+        "maxFunction": {
+          "name": "Text.set",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/infrastructure/FileDocumentStore.ts",
+        "zone": "kernel",
+        "lines": 30,
+        "code": 29,
+        "complexity": 5,
+        "functions": 3,
+        "maxFunction": {
+          "name": "FileDocumentStore.read",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/infrastructure/SvgCodec.ts",
+        "zone": "kernel",
+        "lines": 114,
+        "code": 111,
+        "complexity": 52,
+        "functions": 12,
+        "maxFunction": {
+          "name": "SvgCodec.decode",
+          "complexity": 17
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/main.ts",
+        "zone": "assembly",
+        "lines": 9,
+        "code": 8,
+        "complexity": 4,
+        "functions": 1,
+        "maxFunction": {
+          "name": "(module)",
+          "complexity": 4
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/architecture.test.ts",
+        "zone": "tests",
+        "lines": 48,
+        "code": 47,
+        "complexity": 16,
+        "functions": 4,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 11
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/cli.test.ts",
+        "zone": "tests",
+        "lines": 89,
+        "code": 83,
+        "complexity": 23,
+        "functions": 19,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/domain.test.ts",
+        "zone": "tests",
+        "lines": 75,
+        "code": 68,
+        "complexity": 25,
+        "functions": 22,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/history.test.ts",
+        "zone": "tests",
+        "lines": 67,
+        "code": 62,
+        "complexity": 23,
+        "functions": 22,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/support/MemoryDocumentStore.ts",
+        "zone": "tests",
+        "lines": 14,
+        "code": 15,
+        "complexity": 4,
+        "functions": 2,
+        "maxFunction": {
+          "name": "MemoryDocumentStore.read",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/svg.test.ts",
+        "zone": "tests",
+        "lines": 83,
+        "code": 75,
+        "complexity": 16,
+        "functions": 14,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 2
+        },
+        "responsibility": ""
+      }
+    ]
+  },
+  "head": {
+    "ref": "HEAD",
+    "commit": "afeef1f",
+    "files": [
+      {
+        "path": "packages/kernel/src/cli/CommandDispatcher.ts",
+        "zone": "kernel",
+        "lines": 20,
+        "code": 18,
+        "complexity": 7,
+        "functions": 3,
+        "maxFunction": {
+          "name": "CommandDispatcher.execute",
+          "complexity": 5
+        },
+        "responsibility": "Dispatches a tokenized line through the command registry; knows no concrete command."
+      },
+      {
+        "path": "packages/kernel/src/cli/Lexer.ts",
+        "zone": "kernel",
+        "lines": 33,
+        "code": 32,
+        "complexity": 16,
+        "functions": 1,
+        "maxFunction": {
+          "name": "Lexer.tokenize",
+          "complexity": 16
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/cli/Repl.ts",
+        "zone": "kernel",
+        "lines": 26,
+        "code": 25,
+        "complexity": 8,
+        "functions": 2,
+        "maxFunction": {
+          "name": "Repl.run",
+          "complexity": 7
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/cli/TreeRenderer.ts",
+        "zone": "kernel",
+        "lines": 54,
+        "code": 52,
+        "complexity": 22,
+        "functions": 9,
+        "maxFunction": {
+          "name": "TreeRenderer.decorate",
+          "complexity": 8
+        },
+        "responsibility": "Renders `tree` and `show`."
+      },
+      {
+        "path": "packages/kernel/src/domain/GeometryShape.ts",
+        "zone": "kernel",
+        "lines": 43,
+        "code": 35,
+        "complexity": 13,
+        "functions": 8,
+        "maxFunction": {
+          "name": "GeometryShape.move",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/domain/Group.ts",
+        "zone": "kernel",
+        "lines": 50,
+        "code": 46,
+        "complexity": 21,
+        "functions": 14,
+        "maxFunction": {
+          "name": "Group.insert",
+          "complexity": 4
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/domain/Numbers.ts",
+        "zone": "kernel",
+        "lines": 25,
+        "code": 26,
+        "complexity": 9,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Numbers.finite",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/domain/Shape.ts",
+        "zone": "kernel",
+        "lines": 75,
+        "code": 73,
+        "complexity": 33,
+        "functions": 23,
+        "maxFunction": {
+          "name": "Shape.set",
+          "complexity": 4
+        },
+        "responsibility": "Rich domain base: owns identity/style and defines polymorphic shape operations."
+      },
+      {
+        "path": "packages/kernel/src/domain/SvgDocument.ts",
+        "zone": "kernel",
+        "lines": 172,
+        "code": 170,
+        "complexity": 66,
+        "functions": 36,
+        "maxFunction": {
+          "name": "SvgDocument.group",
+          "complexity": 9
+        },
+        "responsibility": "Aggregate root: identity uniqueness, ownership, ordering, and cycle checks."
+      },
+      {
+        "path": "packages/kernel/src/extension/AttributeHandler.ts",
+        "zone": "kernel",
+        "lines": 28,
+        "code": 11,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "Extension point: the domain meaning of setting one attribute on one kind of shape."
+      },
+      {
+        "path": "packages/kernel/src/extension/Command.ts",
+        "zone": "kernel",
+        "lines": 35,
+        "code": 21,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "Read-only view of the registered commands for `help`."
+      },
+      {
+        "path": "packages/kernel/src/extension/CommandArguments.ts",
+        "zone": "kernel",
+        "lines": 32,
+        "code": 31,
+        "complexity": 16,
+        "functions": 9,
+        "maxFunction": {
+          "name": "CommandArguments.creation",
+          "complexity": 5
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/extension/ExtensionCategory.ts",
+        "zone": "kernel",
+        "lines": 4,
+        "code": 2,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "The four extension points, named as in a plugin manifest's `contributes`."
+      },
+      {
+        "path": "packages/kernel/src/extension/Plugin.ts",
+        "zone": "kernel",
+        "lines": 27,
+        "code": 18,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "What a plugin sees while it activates."
+      },
+      {
+        "path": "packages/kernel/src/extension/ShapeCatalog.ts",
+        "zone": "kernel",
+        "lines": 10,
+        "code": 6,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "Read-only view of the registered shape types, resolved at call time."
+      },
+      {
+        "path": "packages/kernel/src/extension/ShapeProvider.ts",
+        "zone": "kernel",
+        "lines": 37,
+        "code": 19,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "One SVG element as read from a file, handed to the provider that restores it."
+      },
+      {
+        "path": "packages/kernel/src/extension/Token.ts",
+        "zone": "kernel",
+        "lines": 4,
+        "code": 4,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/extension/TreeDecorator.ts",
+        "zone": "kernel",
+        "lines": 25,
+        "code": 14,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "One line of the structure tree: the root `svg (WxH)` line has no shape."
+      },
+      {
+        "path": "packages/kernel/src/host.ts",
+        "zone": "kernel",
+        "lines": 17,
+        "code": 16,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "Assembly API for the host side (composition root, plugin installer, loader)."
+      },
+      {
+        "path": "packages/kernel/src/index.ts",
+        "zone": "kernel",
+        "lines": 19,
+        "code": 18,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "Public kernel API for plugins: domain abstractions and extension point interfaces only."
+      },
+      {
+        "path": "packages/kernel/src/io/FileDocumentStore.ts",
+        "zone": "kernel",
+        "lines": 30,
+        "code": 29,
+        "complexity": 5,
+        "functions": 3,
+        "maxFunction": {
+          "name": "FileDocumentStore.read",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/io/SvgCodec.ts",
+        "zone": "kernel",
+        "lines": 116,
+        "code": 113,
+        "complexity": 53,
+        "functions": 14,
+        "maxFunction": {
+          "name": "SvgCodec.decode",
+          "complexity": 17
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/registry/AttributeRegistry.ts",
+        "zone": "kernel",
+        "lines": 48,
+        "code": 45,
+        "complexity": 23,
+        "functions": 10,
+        "maxFunction": {
+          "name": "AttributeRegistry.set",
+          "complexity": 5
+        },
+        "responsibility": "AttributeHandler registry and the `set` flow of phase_cli_2 §3.2."
+      },
+      {
+        "path": "packages/kernel/src/registry/CommandRegistry.ts",
+        "zone": "kernel",
+        "lines": 25,
+        "code": 22,
+        "complexity": 9,
+        "functions": 6,
+        "maxFunction": {
+          "name": "CommandRegistry.validate",
+          "complexity": 3
+        },
+        "responsibility": "Command registry: the only command-name dispatch point of the kernel."
+      },
+      {
+        "path": "packages/kernel/src/registry/DecoratorRegistry.ts",
+        "zone": "kernel",
+        "lines": 13,
+        "code": 10,
+        "complexity": 3,
+        "functions": 3,
+        "maxFunction": {
+          "name": "DecoratorRegistry.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/registry/ExtensionPoints.ts",
+        "zone": "kernel",
+        "lines": 21,
+        "code": 18,
+        "complexity": 1,
+        "functions": 1,
+        "maxFunction": {
+          "name": "ExtensionPoints.registry",
+          "complexity": 1
+        },
+        "responsibility": "The four kernel registries, one per extension point."
+      },
+      {
+        "path": "packages/kernel/src/registry/Registry.ts",
+        "zone": "kernel",
+        "lines": 50,
+        "code": 38,
+        "complexity": 21,
+        "functions": 13,
+        "maxFunction": {
+          "name": "Registry.validate",
+          "complexity": 5
+        },
+        "responsibility": "Ordered, name-unique registry for one extension point."
+      },
+      {
+        "path": "packages/kernel/src/registry/ShapeRegistry.ts",
+        "zone": "kernel",
+        "lines": 62,
+        "code": 59,
+        "complexity": 32,
+        "functions": 13,
+        "maxFunction": {
+          "name": "ShapeRegistry.validate",
+          "complexity": 8
+        },
+        "responsibility": "ShapeProvider registry: the only shape-type dispatch point of the kernel."
+      },
+      {
+        "path": "packages/kernel/src/session/DocumentStore.ts",
+        "zone": "kernel",
+        "lines": 7,
+        "code": 5,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "Outbound port; the application does not depend on filesystem or XML packages."
+      },
+      {
+        "path": "packages/kernel/src/session/EditCommand.ts",
+        "zone": "kernel",
+        "lines": 29,
+        "code": 26,
+        "complexity": 6,
+        "functions": 4,
+        "maxFunction": {
+          "name": "EditCommand.undo",
+          "complexity": 2
+        },
+        "responsibility": "Command + Memento: a command owns immutable-in-practice before/after copies."
+      },
+      {
+        "path": "packages/kernel/src/session/EditorSession.ts",
+        "zone": "kernel",
+        "lines": 90,
+        "code": 85,
+        "complexity": 24,
+        "functions": 13,
+        "maxFunction": {
+          "name": "EditorSession.canvas",
+          "complexity": 5
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/session/History.ts",
+        "zone": "kernel",
+        "lines": 42,
+        "code": 36,
+        "complexity": 8,
+        "functions": 5,
+        "maxFunction": {
+          "name": "History.undo",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "packages/kernel/src/session/SessionObserver.ts",
+        "zone": "kernel",
+        "lines": 12,
+        "code": 5,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "Observer of the editing session."
+      },
+      {
+        "path": "plugins/builtin-commands/index.ts",
+        "zone": "plugins",
+        "lines": 3,
+        "code": 2,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-commands/src/BuiltinCommandsPlugin.ts",
+        "zone": "plugins",
+        "lines": 66,
+        "code": 65,
+        "complexity": 29,
+        "functions": 22,
+        "maxFunction": {
+          "name": "BuiltinCommandsPlugin.activate.(anonymous)",
+          "complexity": 3
+        },
+        "responsibility": "The Phase 1 command table, registered through the Command extension point in Phase 1 order."
+      },
+      {
+        "path": "plugins/builtin-commands/src/DelegateCommand.ts",
+        "zone": "plugins",
+        "lines": 9,
+        "code": 6,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "DelegateCommand.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-commands/src/edits/AddToEdit.ts",
+        "zone": "plugins",
+        "lines": 9,
+        "code": 10,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "AddToEdit.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-commands/src/edits/CreateEdit.ts",
+        "zone": "plugins",
+        "lines": 11,
+        "code": 11,
+        "complexity": 4,
+        "functions": 2,
+        "maxFunction": {
+          "name": "CreateEdit.apply",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-commands/src/edits/DeleteEdit.ts",
+        "zone": "plugins",
+        "lines": 6,
+        "code": 7,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "DeleteEdit.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-commands/src/edits/GroupEdit.ts",
+        "zone": "plugins",
+        "lines": 9,
+        "code": 10,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "GroupEdit.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-commands/src/edits/MoveEdit.ts",
+        "zone": "plugins",
+        "lines": 9,
+        "code": 10,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "MoveEdit.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-commands/src/edits/ScaleEdit.ts",
+        "zone": "plugins",
+        "lines": 9,
+        "code": 10,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "ScaleEdit.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-commands/src/edits/SetEdit.ts",
+        "zone": "plugins",
+        "lines": 10,
+        "code": 9,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "SetEdit.constructor",
+          "complexity": 1
+        },
+        "responsibility": "One `set` = one undo unit, whichever AttributeHandler (or the default whitelist) performs it."
+      },
+      {
+        "path": "plugins/builtin-commands/src/edits/UngroupEdit.ts",
+        "zone": "plugins",
+        "lines": 8,
+        "code": 9,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "UngroupEdit.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-commands/src/edits/ZOrderEdit.ts",
+        "zone": "plugins",
+        "lines": 8,
+        "code": 9,
+        "complexity": 3,
+        "functions": 2,
+        "maxFunction": {
+          "name": "ZOrderEdit.apply",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-shapes/index.ts",
+        "zone": "plugins",
+        "lines": 3,
+        "code": 2,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-shapes/src/BuiltinShapesPlugin.ts",
+        "zone": "plugins",
+        "lines": 27,
+        "code": 25,
+        "complexity": 7,
+        "functions": 6,
+        "maxFunction": {
+          "name": "BuiltinShapesPlugin.activate",
+          "complexity": 2
+        },
+        "responsibility": "The six Phase 1 shape types, registered through the ShapeProvider extension point."
+      },
+      {
+        "path": "plugins/builtin-shapes/src/Circle.ts",
+        "zone": "plugins",
+        "lines": 13,
+        "code": 14,
+        "complexity": 4,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Circle.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-shapes/src/Ellipse.ts",
+        "zone": "plugins",
+        "lines": 15,
+        "code": 16,
+        "complexity": 4,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Ellipse.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-shapes/src/GeometryShapeProvider.ts",
+        "zone": "plugins",
+        "lines": 36,
+        "code": 32,
+        "complexity": 17,
+        "functions": 5,
+        "maxFunction": {
+          "name": "GeometryShapeProvider.create",
+          "complexity": 8
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-shapes/src/GroupProvider.ts",
+        "zone": "plugins",
+        "lines": 24,
+        "code": 20,
+        "complexity": 6,
+        "functions": 2,
+        "maxFunction": {
+          "name": "GroupProvider.restore",
+          "complexity": 4
+        },
+        "responsibility": "Plain `<g>` container; also the read-back fallback for any `<g data-kind=...>` without its plugin."
+      },
+      {
+        "path": "plugins/builtin-shapes/src/Line.ts",
+        "zone": "plugins",
+        "lines": 15,
+        "code": 16,
+        "complexity": 4,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Line.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-shapes/src/Rect.ts",
+        "zone": "plugins",
+        "lines": 15,
+        "code": 16,
+        "complexity": 4,
+        "functions": 4,
+        "maxFunction": {
+          "name": "Rect.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/builtin-shapes/src/Text.ts",
+        "zone": "plugins",
+        "lines": 18,
+        "code": 19,
+        "complexity": 7,
+        "functions": 6,
+        "maxFunction": {
+          "name": "Text.set",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/host/Contributions.ts",
+        "zone": "assembly",
+        "lines": 38,
+        "code": 34,
+        "complexity": 22,
+        "functions": 11,
+        "maxFunction": {
+          "name": "Contributions.parse",
+          "complexity": 10
+        },
+        "responsibility": "Registration names per extension category, as declared in `contributes` or actually registered."
+      },
+      {
+        "path": "src/host/Diagnostics.ts",
+        "zone": "assembly",
+        "lines": 4,
+        "code": 3,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "Where the host reports startup problems; each message is printed as `error: <message>`."
+      },
+      {
+        "path": "src/host/EditorApplication.ts",
+        "zone": "assembly",
+        "lines": 34,
+        "code": 29,
+        "complexity": 4,
+        "functions": 3,
+        "maxFunction": {
+          "name": "EditorApplication.constructor",
+          "complexity": 2
+        },
+        "responsibility": "Wires the kernel together; which plugins to install is decided by the composition root."
+      },
+      {
+        "path": "src/host/LaunchOptions.ts",
+        "zone": "assembly",
+        "lines": 11,
+        "code": 9,
+        "complexity": 9,
+        "functions": 2,
+        "maxFunction": {
+          "name": "LaunchOptions.parse",
+          "complexity": 8
+        },
+        "responsibility": "Command-line options of the editor: `[--config <plugins.config.json>]`."
+      },
+      {
+        "path": "src/host/PluginConfig.ts",
+        "zone": "assembly",
+        "lines": 41,
+        "code": 34,
+        "complexity": 22,
+        "functions": 7,
+        "maxFunction": {
+          "name": "PluginConfig.parse.(anonymous)",
+          "complexity": 11
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/host/PluginInstaller.ts",
+        "zone": "assembly",
+        "lines": 64,
+        "code": 53,
+        "complexity": 14,
+        "functions": 4,
+        "maxFunction": {
+          "name": "PluginInstaller.install",
+          "complexity": 10
+        },
+        "responsibility": "A plugin ready to install, whether imported in code (method A) or loaded from config (method B)."
+      },
+      {
+        "path": "src/host/PluginLoader.ts",
+        "zone": "assembly",
+        "lines": 63,
+        "code": 55,
+        "complexity": 21,
+        "functions": 6,
+        "maxFunction": {
+          "name": "PluginLoader.loadEntry",
+          "complexity": 8
+        },
+        "responsibility": "Method B: installs the plugins listed in a config file, in order, from string module names."
+      },
+      {
+        "path": "src/host/PluginManifest.ts",
+        "zone": "assembly",
+        "lines": 18,
+        "code": 13,
+        "complexity": 11,
+        "functions": 3,
+        "maxFunction": {
+          "name": "PluginManifest.from",
+          "complexity": 5
+        },
+        "responsibility": "The parts of a plugin's package.json the host relies on: its name and `contributes`."
+      },
+      {
+        "path": "src/host/StagingContext.ts",
+        "zone": "assembly",
+        "lines": 70,
+        "code": 60,
+        "complexity": 22,
+        "functions": 13,
+        "maxFunction": {
+          "name": "StagingContext.duplicates",
+          "complexity": 5
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/host/StreamDiagnostics.ts",
+        "zone": "assembly",
+        "lines": 7,
+        "code": 7,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "StreamDiagnostics.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "src/main.ts",
+        "zone": "assembly",
+        "lines": 34,
+        "code": 25,
+        "complexity": 9,
+        "functions": 1,
+        "maxFunction": {
+          "name": "(module)",
+          "complexity": 9
+        },
+        "responsibility": "Composition root: the only file that names concrete plugins."
+      },
+      {
+        "path": "test/architecture.test.ts",
+        "zone": "tests",
+        "lines": 113,
+        "code": 112,
+        "complexity": 59,
+        "functions": 21,
+        "maxFunction": {
+          "name": "(anonymous).(anonymous)",
+          "complexity": 11
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/baseline.test.ts",
+        "zone": "tests",
+        "lines": 41,
+        "code": 36,
+        "complexity": 6,
+        "functions": 3,
+        "maxFunction": {
+          "name": "(module)",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/cli.test.ts",
+        "zone": "tests",
+        "lines": 86,
+        "code": 80,
+        "complexity": 23,
+        "functions": 19,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/domain.test.ts",
+        "zone": "tests",
+        "lines": 74,
+        "code": 67,
+        "complexity": 25,
+        "functions": 22,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/extension-points.test.ts",
+        "zone": "tests",
+        "lines": 181,
+        "code": 178,
+        "complexity": 78,
+        "functions": 67,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 3
+        },
+        "responsibility": "A composite double: owns `<id>-part`, cannot be ungrouped, reports its composition."
+      },
+      {
+        "path": "test/history.test.ts",
+        "zone": "tests",
+        "lines": 67,
+        "code": 62,
+        "complexity": 23,
+        "functions": 22,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/plugin-loading.test.ts",
+        "zone": "tests",
+        "lines": 165,
+        "code": 154,
+        "complexity": 36,
+        "functions": 35,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 2
+        },
+        "responsibility": "---- Loader: config assembly from string module names ---- Builds a throwaway workspace: config file, plugin packages (plain ESM) and node_modules."
+      },
+      {
+        "path": "test/support/CollectingDiagnostics.ts",
+        "zone": "tests",
+        "lines": 6,
+        "code": 6,
+        "complexity": 1,
+        "functions": 1,
+        "maxFunction": {
+          "name": "CollectingDiagnostics.error",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/support/MemoryDocumentStore.ts",
+        "zone": "tests",
+        "lines": 13,
+        "code": 14,
+        "complexity": 4,
+        "functions": 2,
+        "maxFunction": {
+          "name": "MemoryDocumentStore.read",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/support/TestEditor.ts",
+        "zone": "tests",
+        "lines": 33,
+        "code": 28,
+        "complexity": 7,
+        "functions": 6,
+        "maxFunction": {
+          "name": "TestEditor.create",
+          "complexity": 2
+        },
+        "responsibility": "The default assembly (built-in plugins only) over an in-memory store, for in-process tests."
+      },
+      {
+        "path": "test/support/TranscriptRunner.ts",
+        "zone": "tests",
+        "lines": 66,
+        "code": 58,
+        "complexity": 10,
+        "functions": 4,
+        "maxFunction": {
+          "name": "TranscriptRunner.run",
+          "complexity": 7
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/svg.test.ts",
+        "zone": "tests",
+        "lines": 82,
+        "code": 74,
+        "complexity": 16,
+        "functions": 14,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 2
+        },
+        "responsibility": ""
+      }
+    ]
+  }
+}
