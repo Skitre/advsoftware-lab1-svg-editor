@@ -506,7 +506,7 @@
   },
   "head": {
     "ref": "HEAD",
-    "commit": "9ad2230",
+    "commit": "5981823",
     "files": [
       {
         "path": "packages/kernel/src/cli/CommandDispatcher.ts",
@@ -1744,9 +1744,9 @@
       {
         "path": "test/support/TranscriptRunner.ts",
         "zone": "tests",
-        "lines": 76,
-        "code": 67,
-        "complexity": 14,
+        "lines": 78,
+        "code": 69,
+        "complexity": 15,
         "functions": 5,
         "maxFunction": {
           "name": "TranscriptRunner.run",
