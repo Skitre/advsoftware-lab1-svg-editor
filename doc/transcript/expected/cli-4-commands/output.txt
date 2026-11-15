@@ -1,6 +1,8 @@
 svg-editor 0.1 — type 'help' for commands
 [DIR]  assets
 [FILE] .hidden
+[FILE] broken-box.svg
+[FILE] duplicate-box.svg
 [FILE] other.svg
 error: no document. use 'init' or 'read' first
 error: usage: dir
@@ -33,6 +35,7 @@ Shape parameters (append optional: in <containerId>):
   line <id> <x1> <y1> <x2> <y2> [stroke]
   text <id> <x> <y> "content"
   g <id>
+  box <id> <x> <y> <w> <h> "<label>"
 set: fill / stroke / stroke-width; shape geometry; text content via text.
 Comments start with #. Use double quotes for spaces. Ctrl-D exits.
 canvas 800x600 created
@@ -48,6 +51,8 @@ rect#r1 moved by (5,5)
 rect: 2  text: 1  circle: 1  (total 4, containers 2)
 [DIR]  assets
 [FILE] .hidden
+[FILE] broken-box.svg
+[FILE] duplicate-box.svg
 [FILE] other.svg
 undone: rect#r1 moved by (5,5)
 redone: rect#r1 moved by (5,5)
@@ -65,5 +70,7 @@ read other.svg (7 elements)
 rect: 2  text: 1  circle: 2  ellipse: 1  (total 6, containers 1)
 [DIR]  assets
 [FILE] .hidden
+[FILE] broken-box.svg
+[FILE] duplicate-box.svg
 [FILE] other.svg
 error: undo not allowed after io command

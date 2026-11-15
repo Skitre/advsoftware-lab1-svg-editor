@@ -1,0 +1,42 @@
+# phase_cli_2 §3-§4: box invariants, attribute semantics, nesting, round trip and read-back checks.
+init 400 300
+create box n1 10 10 100 50 "A"
+
+# The whole new subtree is checked for id conflicts; a failed create leaves nothing behind.
+create rect n2-label 0 0 1 1
+create box n2 0 0 10 10 "conflict"
+tree
+
+# Internal structure belongs to the plugin: no ungroup, required parts cannot be detached.
+ungroup n1
+delete n1-rect
+create g other
+addto other n1-label
+group pair n1-rect other
+
+# Nesting, whole-box moves, attribute semantics; each set is one undo unit.
+create box inner 20 20 40 10 "nested" in n1
+move n1 5 5
+set n1 stroke red
+set n1 fill #eeeeee
+set n1 label "B"
+set n1 width 3
+undo
+undo
+redo
+stats
+tree
+show n1
+
+# Deleting a whole box is one undo unit.
+delete inner
+undo
+save boxes.svg
+
+# Read-back: boxes are restored; an incomplete box degrades with a warning; duplicate ids reject the file.
+read boxes.svg
+tree
+read broken-box.svg
+tree
+read duplicate-box.svg
+tree

@@ -1,0 +1,59 @@
+svg-editor 0.1 — type 'help' for commands
+canvas 400x300 created
+box#n1 created (g#n1 + rect#n1-rect + text#n1-label)
+rect#n2-label created
+error: id already exists: n2-label
+svg (400x300)
+├── g#n1 (box)
+│   ├── rect#n1-rect  x=10 y=10 w=100 h=50  fill=#4a90d9
+│   └── text#n1-label  (30,40) "A"
+└── rect#n2-label  x=0 y=0 w=1 h=1
+error: cannot ungroup composite shape: n1
+error: cannot detach part of composite shape: n1-rect
+g#other created
+error: cannot detach part of composite shape: n1-label
+error: cannot detach part of composite shape: n1-rect
+box#inner created (g#inner + rect#inner-rect + text#inner-label) in box#n1
+box#n1 moved by (5,5)
+box#n1 updated: stroke="red"
+box#n1 fill propagated to n1-rect
+box#n1 label updated: "B"
+error: unknown attribute: width
+undone: box#n1 label updated: "B"
+undone: box#n1 fill propagated to n1-rect
+redone: box#n1 fill propagated to n1-rect
+rect: 3  text: 2  (total 5, containers 3)
+svg (400x300)
+├── g#n1  stroke=red (box)
+│   ├── rect#n1-rect  x=15 y=15 w=100 h=50  fill=#eeeeee
+│   ├── text#n1-label  (35,45) "A"
+│   └── g#inner (box)
+│       ├── rect#inner-rect  x=25 y=25 w=40 h=10  fill=#4a90d9
+│       └── text#inner-label  (45,35) "nested"
+├── rect#n2-label  x=0 y=0 w=1 h=1
+└── g#other
+box#n1  parent=svg
+  stroke="red"
+  data-kind="box"
+box#inner deleted
+undone: box#inner deleted
+saved to boxes.svg (8 elements)
+read boxes.svg (8 elements)
+svg (400x300)
+├── g#n1  stroke=red (box)
+│   ├── rect#n1-rect  x=15 y=15 w=100 h=50  fill=#eeeeee
+│   ├── text#n1-label  (35,45) "A"
+│   └── g#inner (box)
+│       ├── rect#inner-rect  x=25 y=25 w=40 h=10  fill=#4a90d9
+│       └── text#inner-label  (45,35) "nested"
+├── rect#n2-label  x=0 y=0 w=1 h=1
+└── g#other
+warning: missing part b1-label; read box b1 as plain g
+read broken-box.svg (2 elements)
+svg (200x100)
+└── g#b1
+    └── rect#b1-rect  x=0 y=0 w=80 h=40  fill=#4a90d9
+error: id already exists: b1-rect
+svg (200x100)
+└── g#b1
+    └── rect#b1-rect  x=0 y=0 w=80 h=40  fill=#4a90d9

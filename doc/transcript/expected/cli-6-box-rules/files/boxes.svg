@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <g id="n1" stroke="red" data-kind="box">
+    <rect id="n1-rect" x="15" y="15" width="100" height="50" fill="#eeeeee"/>
+    <text id="n1-label" x="35" y="45">A</text>
+    <g id="inner" data-kind="box">
+      <rect id="inner-rect" x="25" y="25" width="40" height="10" fill="#4a90d9"/>
+      <text id="inner-label" x="45" y="35">nested</text>
+    </g>
+  </g>
+  <rect id="n2-label" x="0" y="0" width="1" height="1"/>
+  <g id="other"/>
+</svg>

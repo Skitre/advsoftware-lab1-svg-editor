@@ -4,27 +4,23 @@ import { resolve } from 'node:path';
 import { TranscriptRunner } from './support/TranscriptRunner.js';
 
 // phase_cli_2 §6: the same session under method A (code assembly, no arguments) and method B
-// (`--config plugins.config.json`) must produce byte-identical output — given the same plugin set,
-// order and options. That precondition is checked first. Demo commits that wire a new plugin into
-// only one method (demo/box-code-assembly, demo/box-config-assembly) deliberately violate it, so
-// there the comparisons are skipped with the observed difference as the reason.
+// (`--config plugins.config.json`) must produce byte-identical output with the same plugin set,
+// order and options. Plugin sessions must also match the recorded, reviewed expectation.
+// (The demo commits d0dd145 / fd8e3aa wired box into one method only and skipped these comparisons;
+// on main both methods must agree, so nothing is skipped here.)
 const runner = new TranscriptRunner();
 const methodB = ['--config', resolve('plugins.config.json')];
-const sessions = ['cli-1', 'cli-2-flowchart', 'cli-3-regression', 'cli-4-commands'];
-const recorded = ['cli-4-commands'];
+const sessions = ['cli-1', 'cli-2-flowchart', 'cli-3-regression', 'cli-4-commands', 'cli-5-box', 'cli-6-box-rules'];
+const recorded = ['cli-4-commands', 'cli-5-box', 'cli-6-box-rules'];
 
-const pluginsA = runner.plugins();
-const pluginsB = runner.plugins(methodB);
-const same = JSON.stringify(pluginsA) === JSON.stringify(pluginsB);
-const skip = same ? false : `plugin sets differ (A: ${pluginsA.join(', ')}; B: ${pluginsB.join(', ')})`;
-
-test('method A and method B install the same plugins, in the same order, with the same options', { skip }, () => {
-  assert.deepEqual(pluginsA, pluginsB);
-  assert.ok(pluginsA.includes('@svgframe/plugin-builtin-shapes') && pluginsA.includes('@svgframe/plugin-builtin-commands'));
+test('method A and method B install the same plugins, in the same order, with the same options', () => {
+  const plugins = runner.plugins();
+  assert.deepEqual(runner.plugins(methodB), plugins);
+  assert.deepEqual(plugins.slice(0, 2), ['@svgframe/plugin-builtin-shapes', '@svgframe/plugin-builtin-commands']);
 });
 
 for (const session of sessions) {
-  test(`method A and method B are byte-identical: ${session}`, { skip }, () => {
+  test(`method A and method B are byte-identical: ${session}`, () => {
     const a = runner.run(session);
     const b = runner.run(session, methodB);
     assert.equal(b.output.toString('utf8'), a.output.toString('utf8'));
@@ -36,6 +32,8 @@ for (const session of sessions) {
       const expected = runner.expected(session);
       assert.equal(a.output.toString('utf8'), expected.output.toString('utf8'));
       assert.equal(a.status, expected.status);
+      assert.deepEqual([...a.files.keys()].sort(), [...expected.files.keys()].sort());
+      for (const [name, content] of expected.files) assert.ok(a.files.get(name)?.equals(content), `saved file differs: ${name}`);
     }
   });
 }
