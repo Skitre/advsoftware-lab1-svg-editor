@@ -1,0 +1,1 @@
+Not an SVG file: the Explorer shows no [] badge here.

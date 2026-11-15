@@ -1,0 +1,24 @@
+{
+  "name": "svg-badge-outline",
+  "displayName": "SVG Badge & Outline",
+  "description": "Marks .svg files in the Explorer with [] and shows the SVG element tree in the Outline view",
+  "version": "0.1.0",
+  "publisher": "advsoftware-lab",
+  "private": true,
+  "license": "MIT",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./out/src/extension.js",
+  "scripts": {
+    "compile": "tsc -p .",
+    "test": "npm run compile && node --test \"out/test/unit/**/*.test.js\"",
+    "test:vscode": "npm run compile && node out/test/integration/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "@types/vscode": "1.90.0",
+    "@vscode/test-electron": "^3.1.0",
+    "typescript": "^5.9.3"
+  }
+}

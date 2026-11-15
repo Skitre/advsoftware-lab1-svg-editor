@@ -19,3 +19,20 @@ jobs:
         run: bin/svg-editor < examples/flowchart.commands
       - name: Ensure the generated SVG matches the committed artifact
         run: git diff --exit-code -- examples/flowchart.svg
+  vscode-extension:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: vscode-extension
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: vscode-extension/package-lock.json
+      - run: npm ci
+      - name: Unit tests (parser and file filter, no VSCode needed)
+        run: npm test
+      - name: Integration test inside a downloaded VSCode (headless)
+        run: xvfb-run -a npm run test:vscode
