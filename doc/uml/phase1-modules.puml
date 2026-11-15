@@ -1,0 +1,34 @@
+@startuml phase1-modules
+!pragma layout smetana
+title Phase 1 (tag final): layered CLI, closed name dispatch
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName SansSerif
+skinparam ArrowColor #46607D
+skinparam componentBackgroundColor #EDF4FB
+skinparam componentBorderColor #46607D
+
+component "main.ts\ncomposition root" as main
+package "src (single package)" {
+  component "cli\nRepl / Lexer / TreeFormatter\n**CommandFactory** (Map of 19 names)" as cli #FCE8E6
+  component "application\nEditorSession / History\nEditCommand + 10 concrete commands" as app
+  interface "DocumentStore" as port
+  component "domain\nSvgDocument / Shape / Group\nRect Circle Ellipse Line Text\n**ShapeFactory** (Map of 6 types)" as domain #FCE8E6
+  component "infrastructure\nFileDocumentStore / SvgCodec" as infra
+}
+main --> cli : assemble
+main --> app : assemble
+main --> infra : inject adapter
+cli --> app : execute
+cli --> domain : create / inspect
+app --> domain : edit / clone
+app --> port
+infra ..|> port
+infra --> domain : parse / serialize\n(element name -> ShapeFactory)
+note bottom of domain
+Adding a shape, command, tree label or attribute meaning
+means editing ShapeFactory / CommandFactory / TreeFormatter /
+Shape.set whitelist: the red modules are closed for extension.
+end note
+@enduml

@@ -142,16 +142,16 @@ class MetricsReport {
       ...zones.map(row),
       `| **CLI 合计** | | | ${cliZones(base, 'code')} → ${cliZones(head, 'code')} | ${cliZones(base, 'complexity')} | ${cliZones(head, 'complexity')} | ${this.signed(cliZones(head, 'complexity') - cliZones(base, 'complexity'))} |`, '',
       '## 单独列出（不计入 CLI 重构增量）', '',
-      '| 分区 | 文件数 | 代码行 |', '|---|---|---|',
+      '| 分区 | 文件数 | 代码行 |', '|---|---|---|', // tests = CLI tests; VSCode = extension source plus its own tests
       ...(['tests', 'vscode'] as const).map(zone => `| ${names[zone]} | ${sum(base, zone, 'files')} → ${sum(head, zone, 'files')} | ${sum(base, zone, 'code')} → ${sum(head, zone, 'code')} |`), '',
-      ...zones.flatMap(zone => [`## 文件清单与职责：${names[zone]}`, '',
+      ...[...zones, 'vscode' as const].flatMap(zone => [`## 文件清单与职责：${names[zone]}${zone === 'vscode' ? '（单独列出，含其测试）' : ''}`, '',
         '| 文件 | 代码行 | 复杂度 | 较基线 | 最复杂函数 | 职责（取自源码首个文档注释） |', '|---|---|---|---|---|---|', ...inventory(zone), '']),
       ...(removed.length ? ['## 基线中已移除或改名的文件', '', ...removed.map(file => `- \`${file.path}\`（复杂度 ${file.complexity}）`), ''] : []),
     ].join('\n');
   }
 
   private zone(path: string, modular: boolean): Zone | undefined {
-    if (path.startsWith('vscode-extension/')) return path.includes('/test/') ? 'tests' : 'vscode';
+    if (path.startsWith('vscode-extension/')) return 'vscode'; // extension source and its tests, never CLI
     if (/^(test|packages\/[^/]+\/test|plugins\/[^/]+\/test)\//.test(path)) return 'tests';
     if (path.startsWith('packages/kernel/src/')) return 'kernel';
     if (/^plugins\/[^/]+\/(index\.ts|src\/)/.test(path)) return 'plugins';

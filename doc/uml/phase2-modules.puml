@@ -1,0 +1,68 @@
+@startuml phase2-modules
+!pragma layout smetana
+title Phase 2 (tag p2): kernel + extension points, plugins, host
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName SansSerif
+skinparam ArrowColor #46607D
+skinparam componentBackgroundColor #EDF4FB
+skinparam componentBorderColor #46607D
+skinparam packageBorderColor #46607D
+
+package "host (src/)" {
+  component "main.ts\ncomposition root\n(method A list)" as main #FFF4D6
+  component "PluginLoader\n(method B: plugins.config.json)" as loader #FFF4D6
+  component "PluginInstaller + StagingContext\nmanifest -> activate -> duplicates\n-> contributes check -> commit" as installer #FFF4D6
+  component "EditorApplication\nwires kernel objects" as appl #FFF4D6
+}
+
+package "@svgframe/kernel (packages/kernel)" {
+  component "<<public API>>\nextension (index.ts)\nShapeProvider / Command\nTreeDecorator / AttributeHandler\nPlugin / PluginContext" as ext #E6F4EA
+  component "registry\nShape/Command/Decorator/\nAttributeRegistry" as reg
+  component "cli\nRepl / Lexer\nCommandDispatcher / TreeRenderer" as cli
+  component "session\nEditorSession / History\nEditCommand / SessionObserver" as session
+  component "domain\nSvgDocument / Shape\nGroup / GeometryShape" as domain
+  component "io\nSvgCodec / FileDocumentStore" as io
+}
+
+package "plugins/* (@svgframe/plugin-*)" as plugs {
+  component "builtin-shapes\nrect circle ellipse line text g" as bshapes
+  component "builtin-commands\n19 Phase 1 commands" as bcmds
+  component "command-stats" as stats
+  component "command-dir\nDirCommand -> DirectoryReader\n<- NodeDirectoryReader (adapter)" as dir
+  component "shape-box\nBoxProvider / BoxAttributeHandler\nBoxTypeLabel" as box
+  component "tree-star\nModifiedStar" as star
+}
+
+main --> installer : install(source)
+main --> loader : --config
+loader --> installer : install(source)\nstring module names only
+main --> appl
+appl --> reg
+appl --> cli
+appl --> session
+installer --> reg : register (commit)
+installer --> ext : PluginContext
+cli --> reg : lookup / decorate
+session --> domain
+reg --> ext
+reg --> domain
+io --> reg : providerFor(element, data-kind)
+io --> domain
+cli --> session
+
+bshapes --> ext
+bcmds --> ext
+stats --> ext
+dir --> ext
+box --> ext
+star --> ext
+main ..> plugs : imports all six plugin packages\n(built-ins always; others in method A)
+note bottom of ext
+Plugins import only "@svgframe/kernel" (domain abstractions + extension interfaces);
+the kernel imports no plugin and enumerates no plugin-provided name.
+Only main.ts names concrete plugins (dotted arrow).
+Checked by test/architecture.test.ts.
+end note
+@enduml

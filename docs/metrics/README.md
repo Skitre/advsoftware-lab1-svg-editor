@@ -1,6 +1,6 @@
 # 代码指标（脚本生成，请勿手改）
 
-由 `scripts/metrics.ts` 从 git 历史生成：基线 `final`（d826d99）对比 `HEAD`（afeef1f）。
+由 `scripts/metrics.ts` 从 git 历史生成：基线 `final`（d826d99）对比 `HEAD`（9ad2230）。
 只统计 TypeScript 源码；依赖包与构建产物不计。代码行 = 含至少一个 token 的行（空行、纯注释行不计）。
 圈复杂度按 McCabe：每个函数/方法/箭头函数计 1，每个 if、?:、循环、case、catch、&&、||、?? 再加 1；嵌套函数单独计。
 分区：内核 = `packages/kernel/src`；装配处 = `src`（组合根、安装器、加载器）；插件 = `plugins/*`。基线 `final` 尚无插件化目录，其 `src/main.ts` 记为装配处、其余 `src` 记为内核。
@@ -10,16 +10,16 @@
 | 分区 | 文件数 | 物理行 | 代码行 | 复杂度 final | 复杂度 HEAD | 增量 |
 |---|---|---|---|---|---|---|
 | 内核 | 32 → 33 | 1048 → 1281 | 1021 → 1128 | 372 | 396 | +24 |
-| 装配处 | 1 → 11 | 9 → 384 | 8 → 322 | 4 | 136 | +132 |
-| 插件 | 0 → 21 | 0 → 323 | 0 → 318 | 0 | 105 | +105 |
-| **CLI 合计** | | | 1029 → 1768 | 376 | 637 | +261 |
+| 装配处 | 1 → 11 | 9 → 414 | 8 → 352 | 4 | 143 | +139 |
+| 插件 | 0 → 40 | 0 → 676 | 0 → 577 | 0 | 187 | +187 |
+| **CLI 合计** | | | 1029 → 2057 | 376 | 726 | +350 |
 
 ## 单独列出（不计入 CLI 重构增量）
 
 | 分区 | 文件数 | 代码行 |
 |---|---|---|
-| 测试 | 6 → 12 | 350 → 869 |
-| VSCode 扩展 | 0 → 0 | 0 → 0 |
+| 测试 | 6 → 20 | 350 → 1397 |
+| VSCode 扩展 | 0 → 9 | 0 → 272 |
 
 ## 文件清单与职责：内核
 
@@ -66,14 +66,14 @@
 | `src/host/Contributions.ts` | 34 | 22 | new | Contributions.parse (10) | Registration names per extension category, as declared in `contributes` or actually registered. |
 | `src/host/Diagnostics.ts` | 3 | 0 | new | - | Where the host reports startup problems; each message is printed as `error: <message>`. |
 | `src/host/EditorApplication.ts` | 29 | 4 | new | EditorApplication.constructor (2) | Wires the kernel together; which plugins to install is decided by the composition root. |
-| `src/host/LaunchOptions.ts` | 9 | 9 | new | LaunchOptions.parse (8) | Command-line options of the editor: `[--config <plugins.config.json>]`. |
+| `src/host/LaunchOptions.ts` | 15 | 11 | new | LaunchOptions.parse (10) | Command-line options of the editor: `[--config <plugins.config.json>] [--list-plugins]`. |
 | `src/host/PluginConfig.ts` | 34 | 22 | new | PluginConfig.parse.(anonymous) (11) |  |
-| `src/host/PluginInstaller.ts` | 53 | 14 | new | PluginInstaller.install (10) | A plugin ready to install, whether imported in code (method A) or loaded from config (method B). |
+| `src/host/PluginInstaller.ts` | 59 | 17 | new | PluginInstaller.install (12) | A plugin ready to install, whether imported in code (method A) or loaded from config (method B). |
 | `src/host/PluginLoader.ts` | 55 | 21 | new | PluginLoader.loadEntry (8) | Method B: installs the plugins listed in a config file, in order, from string module names. |
 | `src/host/PluginManifest.ts` | 13 | 11 | new | PluginManifest.from (5) | The parts of a plugin's package.json the host relies on: its name and `contributes`. |
 | `src/host/StagingContext.ts` | 60 | 22 | new | StagingContext.duplicates (5) |  |
 | `src/host/StreamDiagnostics.ts` | 7 | 2 | new | StreamDiagnostics.constructor (1) |  |
-| `src/main.ts` | 25 | 9 | +5 | (module) (9) | Composition root: the only file that names concrete plugins. |
+| `src/main.ts` | 43 | 11 | +7 | (module) (11) | Composition root: the only file that names concrete plugins. |
 
 ## 文件清单与职责：插件
 
@@ -100,6 +100,39 @@
 | `plugins/builtin-shapes/src/Line.ts` | 16 | 4 | new | Line.constructor (1) |  |
 | `plugins/builtin-shapes/src/Rect.ts` | 16 | 4 | new | Rect.constructor (1) |  |
 | `plugins/builtin-shapes/src/Text.ts` | 19 | 7 | new | Text.set (2) |  |
+| `plugins/command-dir/index.ts` | 2 | 0 | new | - |  |
+| `plugins/command-dir/src/DirCommand.ts` | 33 | 14 | new | DirCommand.execute (3) | `dir`: lists the direct children of the process working directory — Adapter pattern Client. |
+| `plugins/command-dir/src/DirPlugin.ts` | 9 | 3 | new | DirPlugin.constructor (1) | Contributes `dir`; the directory access and the working directory are injectable for tests. |
+| `plugins/command-dir/src/DirectoryReader.ts` | 8 | 0 | new | - |  |
+| `plugins/command-dir/src/NodeDirectoryReader.ts` | 14 | 6 | new | NodeDirectoryReader.kind (4) | Adapter pattern — Adapter: implements DirectoryReader on top of the Adaptee `node:fs` (`readdirSync` with `Dirent` file types). |
+| `plugins/command-stats/index.ts` | 2 | 0 | new | - |  |
+| `plugins/command-stats/src/ShapeStatistics.ts` | 28 | 7 | new | ShapeStatistics.visit (4) | Counts a document depth-first in current child order: leaves by shape type (in order of first appearance), containers (any shape with children slots, e.g. |
+| `plugins/command-stats/src/StatsCommand.ts` | 11 | 1 | new | StatsCommand.execute (1) | `stats`: read-only shape statistics of the current document; never enters the undo stack. |
+| `plugins/command-stats/src/StatsPlugin.ts` | 5 | 1 | new | StatsPlugin.activate (1) | Contributes the `stats` command. |
+| `plugins/shape-box/index.ts` | 2 | 0 | new | - |  |
+| `plugins/shape-box/src/Box.ts` | 29 | 10 | new | Box.ownsPart (2) | Composite shape `box`: a `<g data-kind="box">` that owns a frame `<id>-rect` and a title `<id>-label`. |
+| `plugins/shape-box/src/BoxAttributeHandler.ts` | 17 | 5 | new | BoxAttributeHandler.handles (3) | Domain meaning of attributes on a box: `fill` propagates to the frame, `label` rewrites the title. |
+| `plugins/shape-box/src/BoxPlugin.ts` | 14 | 4 | new | BoxPlugin.activate (4) | Contributes the `box` shape, its attribute semantics and its `(box)` tree label. |
+| `plugins/shape-box/src/BoxProvider.ts` | 39 | 17 | new | BoxProvider.restore (8) | ShapeProvider for `box`. |
+| `plugins/shape-box/src/BoxTypeLabel.ts` | 5 | 2 | new | BoxTypeLabel.label (2) | Tree label `(box)` on box container lines, e.g. |
+| `plugins/tree-star/index.ts` | 2 | 0 | new | - |  |
+| `plugins/tree-star/src/ContentFingerprint.ts` | 13 | 7 | new | ContentFingerprint.ofShape (2) | Content identity used for dirty tracking. |
+| `plugins/tree-star/src/ModifiedStar.ts` | 17 | 4 | new | ModifiedStar.label (3) | Tree label `*` for unsaved changes. |
+| `plugins/tree-star/src/TreeStarPlugin.ts` | 9 | 1 | new | TreeStarPlugin.activate (1) | Contributes the `modified-star` tree label; it observes the session to learn the saved state. |
+
+## 文件清单与职责：VSCode 扩展（单独列出，含其测试）
+
+| 文件 | 代码行 | 复杂度 | 较基线 | 最复杂函数 | 职责（取自源码首个文档注释） |
+|---|---|---|---|---|---|
+| `vscode-extension/src/core/SvgElementNode.ts` | 9 | 0 | new | - | One element of an SVG/XML text with source offsets (UTF-16 indices into the document text). |
+| `vscode-extension/src/core/SvgFileFilter.ts` | 4 | 3 | new | SvgFileFilter.isSvgFile (2) | Decides which Explorer entries are SVG files: a regular file whose name ends in `.svg` (any case). |
+| `vscode-extension/src/core/SvgOutlineParser.ts` | 93 | 47 | new | SvgOutlineParser.scan (15) |  |
+| `vscode-extension/src/extension.ts` | 10 | 2 | new | activate (1) |  |
+| `vscode-extension/src/vscode/SvgDocumentSymbolProvider.ts` | 19 | 9 | new | SvgDocumentSymbolProvider.symbol (4) | Adapter between the parser's element tree and VSCode's Outline: each element becomes a DocumentSymbol named `tag#id` (or `tag`), spanning the element, selecting its tag name. |
+| `vscode-extension/src/vscode/SvgFileDecorationProvider.ts` | 13 | 5 | new | SvgFileDecorationProvider.provideFileDecoration (4) | VSCode calls provideFileDecoration for every Explorer entry it renders; this provider answers with a `[]` badge for SVG files and nothing for other files and folders (including a folder named `x.svg`). |
+| `vscode-extension/test/integration/runTest.ts` | 12 | 4 | new | (module) (3) | Launches a real VSCode with this extension under development and runs suite.ts inside it. |
+| `vscode-extension/test/integration/suite.ts` | 55 | 10 | new | run (4) |  |
+| `vscode-extension/test/unit/outline.test.ts` | 57 | 16 | new | (anonymous) (2) |  |
 
 ## 基线中已移除或改名的文件
 

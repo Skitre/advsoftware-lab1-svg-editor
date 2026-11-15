@@ -506,7 +506,7 @@
   },
   "head": {
     "ref": "HEAD",
-    "commit": "afeef1f",
+    "commit": "9ad2230",
     "files": [
       {
         "path": "packages/kernel/src/cli/CommandDispatcher.ts",
@@ -1155,6 +1155,285 @@
         "responsibility": ""
       },
       {
+        "path": "plugins/command-dir/index.ts",
+        "zone": "plugins",
+        "lines": 3,
+        "code": 2,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/command-dir/src/DirCommand.ts",
+        "zone": "plugins",
+        "lines": 42,
+        "code": 33,
+        "complexity": 14,
+        "functions": 8,
+        "maxFunction": {
+          "name": "DirCommand.execute",
+          "complexity": 3
+        },
+        "responsibility": "`dir`: lists the direct children of the process working directory — Adapter pattern Client."
+      },
+      {
+        "path": "plugins/command-dir/src/DirPlugin.ts",
+        "zone": "plugins",
+        "lines": 12,
+        "code": 9,
+        "complexity": 3,
+        "functions": 3,
+        "maxFunction": {
+          "name": "DirPlugin.constructor",
+          "complexity": 1
+        },
+        "responsibility": "Contributes `dir`; the directory access and the working directory are injectable for tests."
+      },
+      {
+        "path": "plugins/command-dir/src/DirectoryReader.ts",
+        "zone": "plugins",
+        "lines": 14,
+        "code": 8,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/command-dir/src/NodeDirectoryReader.ts",
+        "zone": "plugins",
+        "lines": 21,
+        "code": 14,
+        "complexity": 6,
+        "functions": 3,
+        "maxFunction": {
+          "name": "NodeDirectoryReader.kind",
+          "complexity": 4
+        },
+        "responsibility": "Adapter pattern — Adapter: implements DirectoryReader on top of the Adaptee `node:fs` (`readdirSync` with `Dirent` file types)."
+      },
+      {
+        "path": "plugins/command-dir/test/dir.test.ts",
+        "zone": "tests",
+        "lines": 83,
+        "code": 74,
+        "complexity": 27,
+        "functions": 26,
+        "maxFunction": {
+          "name": "FakeReader.list",
+          "complexity": 2
+        },
+        "responsibility": "Test double for the Target interface: a fixed listing, or a failure."
+      },
+      {
+        "path": "plugins/command-stats/index.ts",
+        "zone": "plugins",
+        "lines": 3,
+        "code": 2,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/command-stats/src/ShapeStatistics.ts",
+        "zone": "plugins",
+        "lines": 36,
+        "code": 28,
+        "complexity": 7,
+        "functions": 4,
+        "maxFunction": {
+          "name": "ShapeStatistics.visit",
+          "complexity": 4
+        },
+        "responsibility": "Counts a document depth-first in current child order: leaves by shape type (in order of first appearance), containers (any shape with children slots, e.g."
+      },
+      {
+        "path": "plugins/command-stats/src/StatsCommand.ts",
+        "zone": "plugins",
+        "lines": 14,
+        "code": 11,
+        "complexity": 1,
+        "functions": 1,
+        "maxFunction": {
+          "name": "StatsCommand.execute",
+          "complexity": 1
+        },
+        "responsibility": "`stats`: read-only shape statistics of the current document; never enters the undo stack."
+      },
+      {
+        "path": "plugins/command-stats/src/StatsPlugin.ts",
+        "zone": "plugins",
+        "lines": 7,
+        "code": 5,
+        "complexity": 1,
+        "functions": 1,
+        "maxFunction": {
+          "name": "StatsPlugin.activate",
+          "complexity": 1
+        },
+        "responsibility": "Contributes the `stats` command."
+      },
+      {
+        "path": "plugins/command-stats/test/stats.test.ts",
+        "zone": "tests",
+        "lines": 53,
+        "code": 45,
+        "complexity": 17,
+        "functions": 16,
+        "maxFunction": {
+          "name": "Composite.clone",
+          "complexity": 2
+        },
+        "responsibility": "Leaf double: any type name, no dependency on the built-in shapes plugin."
+      },
+      {
+        "path": "plugins/shape-box/index.ts",
+        "zone": "plugins",
+        "lines": 3,
+        "code": 2,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/shape-box/src/Box.ts",
+        "zone": "plugins",
+        "lines": 34,
+        "code": 29,
+        "complexity": 10,
+        "functions": 8,
+        "maxFunction": {
+          "name": "Box.ownsPart",
+          "complexity": 2
+        },
+        "responsibility": "Composite shape `box`: a `<g data-kind=\"box\">` that owns a frame `<id>-rect` and a title `<id>-label`."
+      },
+      {
+        "path": "plugins/shape-box/src/BoxAttributeHandler.ts",
+        "zone": "plugins",
+        "lines": 23,
+        "code": 17,
+        "complexity": 5,
+        "functions": 2,
+        "maxFunction": {
+          "name": "BoxAttributeHandler.handles",
+          "complexity": 3
+        },
+        "responsibility": "Domain meaning of attributes on a box: `fill` propagates to the frame, `label` rewrites the title."
+      },
+      {
+        "path": "plugins/shape-box/src/BoxPlugin.ts",
+        "zone": "plugins",
+        "lines": 17,
+        "code": 14,
+        "complexity": 4,
+        "functions": 1,
+        "maxFunction": {
+          "name": "BoxPlugin.activate",
+          "complexity": 4
+        },
+        "responsibility": "Contributes the `box` shape, its attribute semantics and its `(box)` tree label."
+      },
+      {
+        "path": "plugins/shape-box/src/BoxProvider.ts",
+        "zone": "plugins",
+        "lines": 52,
+        "code": 39,
+        "complexity": 17,
+        "functions": 6,
+        "maxFunction": {
+          "name": "BoxProvider.restore",
+          "complexity": 8
+        },
+        "responsibility": "ShapeProvider for `box`."
+      },
+      {
+        "path": "plugins/shape-box/src/BoxTypeLabel.ts",
+        "zone": "plugins",
+        "lines": 7,
+        "code": 5,
+        "complexity": 2,
+        "functions": 1,
+        "maxFunction": {
+          "name": "BoxTypeLabel.label",
+          "complexity": 2
+        },
+        "responsibility": "Tree label `(box)` on box container lines, e.g."
+      },
+      {
+        "path": "plugins/shape-box/test/box.test.ts",
+        "zone": "tests",
+        "lines": 131,
+        "code": 130,
+        "complexity": 51,
+        "functions": 43,
+        "maxFunction": {
+          "name": "FakeCatalog.create",
+          "complexity": 4
+        },
+        "responsibility": "Test doubles for the parts: the box plugin only needs shape types named rect and text."
+      },
+      {
+        "path": "plugins/tree-star/index.ts",
+        "zone": "plugins",
+        "lines": 3,
+        "code": 2,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": ""
+      },
+      {
+        "path": "plugins/tree-star/src/ContentFingerprint.ts",
+        "zone": "plugins",
+        "lines": 23,
+        "code": 13,
+        "complexity": 7,
+        "functions": 6,
+        "maxFunction": {
+          "name": "ContentFingerprint.ofShape",
+          "complexity": 2
+        },
+        "responsibility": "Content identity used for dirty tracking."
+      },
+      {
+        "path": "plugins/tree-star/src/ModifiedStar.ts",
+        "zone": "plugins",
+        "lines": 28,
+        "code": 17,
+        "complexity": 4,
+        "functions": 2,
+        "maxFunction": {
+          "name": "ModifiedStar.label",
+          "complexity": 3
+        },
+        "responsibility": "Tree label `*` for unsaved changes."
+      },
+      {
+        "path": "plugins/tree-star/src/TreeStarPlugin.ts",
+        "zone": "plugins",
+        "lines": 11,
+        "code": 9,
+        "complexity": 1,
+        "functions": 1,
+        "maxFunction": {
+          "name": "TreeStarPlugin.activate",
+          "complexity": 1
+        },
+        "responsibility": "Contributes the `modified-star` tree label; it observes the session to learn the saved state."
+      },
+      {
+        "path": "plugins/tree-star/test/modified-star.test.ts",
+        "zone": "tests",
+        "lines": 93,
+        "code": 84,
+        "complexity": 34,
+        "functions": 34,
+        "maxFunction": {
+          "name": "Leaf.constructor",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
         "path": "src/host/Contributions.ts",
         "zone": "assembly",
         "lines": 38,
@@ -1192,15 +1471,15 @@
       {
         "path": "src/host/LaunchOptions.ts",
         "zone": "assembly",
-        "lines": 11,
-        "code": 9,
-        "complexity": 9,
+        "lines": 17,
+        "code": 15,
+        "complexity": 11,
         "functions": 2,
         "maxFunction": {
           "name": "LaunchOptions.parse",
-          "complexity": 8
+          "complexity": 10
         },
-        "responsibility": "Command-line options of the editor: `[--config <plugins.config.json>]`."
+        "responsibility": "Command-line options of the editor: `[--config <plugins.config.json>] [--list-plugins]`."
       },
       {
         "path": "src/host/PluginConfig.ts",
@@ -1218,13 +1497,13 @@
       {
         "path": "src/host/PluginInstaller.ts",
         "zone": "assembly",
-        "lines": 64,
-        "code": 53,
-        "complexity": 14,
-        "functions": 4,
+        "lines": 71,
+        "code": 59,
+        "complexity": 17,
+        "functions": 5,
         "maxFunction": {
           "name": "PluginInstaller.install",
-          "complexity": 10
+          "complexity": 12
         },
         "responsibility": "A plugin ready to install, whether imported in code (method A) or loaded from config (method B)."
       },
@@ -1283,13 +1562,13 @@
       {
         "path": "src/main.ts",
         "zone": "assembly",
-        "lines": 34,
-        "code": 25,
-        "complexity": 9,
+        "lines": 51,
+        "code": 43,
+        "complexity": 11,
         "functions": 1,
         "maxFunction": {
           "name": "(module)",
-          "complexity": 9
+          "complexity": 11
         },
         "responsibility": "Composition root: the only file that names concrete plugins."
       },
@@ -1307,15 +1586,41 @@
         "responsibility": ""
       },
       {
+        "path": "test/assembly.test.ts",
+        "zone": "tests",
+        "lines": 39,
+        "code": 32,
+        "complexity": 7,
+        "functions": 3,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 4
+        },
+        "responsibility": ""
+      },
+      {
         "path": "test/baseline.test.ts",
         "zone": "tests",
-        "lines": 41,
-        "code": 36,
+        "lines": 40,
+        "code": 35,
         "complexity": 6,
         "functions": 3,
         "maxFunction": {
           "name": "(module)",
           "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/box-integration.test.ts",
+        "zone": "tests",
+        "lines": 48,
+        "code": 48,
+        "complexity": 7,
+        "functions": 6,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 2
         },
         "responsibility": ""
       },
@@ -1329,6 +1634,19 @@
         "maxFunction": {
           "name": "(anonymous)",
           "complexity": 3
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/command-plugins.test.ts",
+        "zone": "tests",
+        "lines": 78,
+        "code": 72,
+        "complexity": 22,
+        "functions": 16,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 4
         },
         "responsibility": ""
       },
@@ -1426,10 +1744,10 @@
       {
         "path": "test/support/TranscriptRunner.ts",
         "zone": "tests",
-        "lines": 66,
-        "code": 58,
-        "complexity": 10,
-        "functions": 4,
+        "lines": 76,
+        "code": 67,
+        "complexity": 14,
+        "functions": 5,
         "maxFunction": {
           "name": "TranscriptRunner.run",
           "complexity": 7
@@ -1443,6 +1761,132 @@
         "code": 74,
         "complexity": 16,
         "functions": 14,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 2
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "test/tree-labels.test.ts",
+        "zone": "tests",
+        "lines": 39,
+        "code": 35,
+        "complexity": 5,
+        "functions": 5,
+        "maxFunction": {
+          "name": "(anonymous)",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "vscode-extension/src/core/SvgElementNode.ts",
+        "zone": "vscode",
+        "lines": 13,
+        "code": 9,
+        "complexity": 0,
+        "functions": 0,
+        "responsibility": "One element of an SVG/XML text with source offsets (UTF-16 indices into the document text)."
+      },
+      {
+        "path": "vscode-extension/src/core/SvgFileFilter.ts",
+        "zone": "vscode",
+        "lines": 5,
+        "code": 4,
+        "complexity": 3,
+        "functions": 2,
+        "maxFunction": {
+          "name": "SvgFileFilter.isSvgFile",
+          "complexity": 2
+        },
+        "responsibility": "Decides which Explorer entries are SVG files: a regular file whose name ends in `.svg` (any case)."
+      },
+      {
+        "path": "vscode-extension/src/core/SvgOutlineParser.ts",
+        "zone": "vscode",
+        "lines": 109,
+        "code": 93,
+        "complexity": 47,
+        "functions": 10,
+        "maxFunction": {
+          "name": "SvgOutlineParser.scan",
+          "complexity": 15
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "vscode-extension/src/extension.ts",
+        "zone": "vscode",
+        "lines": 13,
+        "code": 10,
+        "complexity": 2,
+        "functions": 2,
+        "maxFunction": {
+          "name": "activate",
+          "complexity": 1
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "vscode-extension/src/vscode/SvgDocumentSymbolProvider.ts",
+        "zone": "vscode",
+        "lines": 26,
+        "code": 19,
+        "complexity": 9,
+        "functions": 5,
+        "maxFunction": {
+          "name": "SvgDocumentSymbolProvider.symbol",
+          "complexity": 4
+        },
+        "responsibility": "Adapter between the parser's element tree and VSCode's Outline: each element becomes a DocumentSymbol named `tag#id` (or `tag`), spanning the element, selecting its tag name."
+      },
+      {
+        "path": "vscode-extension/src/vscode/SvgFileDecorationProvider.ts",
+        "zone": "vscode",
+        "lines": 21,
+        "code": 13,
+        "complexity": 5,
+        "functions": 2,
+        "maxFunction": {
+          "name": "SvgFileDecorationProvider.provideFileDecoration",
+          "complexity": 4
+        },
+        "responsibility": "VSCode calls provideFileDecoration for every Explorer entry it renders; this provider answers with a `[]` badge for SVG files and nothing for other files and folders (including a folder named `x.svg`)."
+      },
+      {
+        "path": "vscode-extension/test/integration/runTest.ts",
+        "zone": "vscode",
+        "lines": 16,
+        "code": 12,
+        "complexity": 4,
+        "functions": 2,
+        "maxFunction": {
+          "name": "(module)",
+          "complexity": 3
+        },
+        "responsibility": "Launches a real VSCode with this extension under development and runs suite.ts inside it."
+      },
+      {
+        "path": "vscode-extension/test/integration/suite.ts",
+        "zone": "vscode",
+        "lines": 57,
+        "code": 55,
+        "complexity": 10,
+        "functions": 6,
+        "maxFunction": {
+          "name": "run",
+          "complexity": 4
+        },
+        "responsibility": ""
+      },
+      {
+        "path": "vscode-extension/test/unit/outline.test.ts",
+        "zone": "vscode",
+        "lines": 65,
+        "code": 57,
+        "complexity": 16,
+        "functions": 12,
         "maxFunction": {
           "name": "(anonymous)",
           "complexity": 2
