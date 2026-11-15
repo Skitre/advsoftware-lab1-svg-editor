@@ -57,13 +57,13 @@ rect: 2  text: 1  circle: 1  (total 4, containers 2)
 undone: rect#r1 moved by (5,5)
 redone: rect#r1 moved by (5,5)
 undone: rect#r1 moved by (5,5)
-svg (800x600)
-├── g#scene
-│   ├── rect#r1  x=0 y=0 w=10 h=10
-│   └── text#t1  (5,5) "a"
-├── circle#c1  cx=1 cy=1 r=1
-├── g#empty
-└── rect#r2  x=1 y=1 w=1 h=1
+svg (800x600) *
+├── g#scene *
+│   ├── rect#r1  x=0 y=0 w=10 h=10 *
+│   └── text#t1  (5,5) "a" *
+├── circle#c1  cx=1 cy=1 r=1 *
+├── g#empty *
+└── rect#r2  x=1 y=1 w=1 h=1 *
 error: usage: stats
 warning: assigned id rect1 to unnamed <rect>
 read other.svg (7 elements)

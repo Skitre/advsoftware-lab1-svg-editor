@@ -1,0 +1,32 @@
+# phase_cli_2 §5: modified-star and (box) coexist; dirty = content differs from the last saved state.
+init 800 600
+tree
+
+# New shapes are marked at once; the root marks any unsaved difference.
+create g flowchart
+create box n1 120 100 160 60 "处理数据" in flowchart
+create line arrow1 280 130 520 130 black in flowchart
+tree
+save labels.svg
+tree
+
+# Editing a part marks that part (and the root), not its containers; labels join in plugin order.
+set n1 fill #f5a623
+tree
+
+# Undo back to the save point clears the mark (content-based dirty semantics).
+undo
+tree
+move arrow1 0 10
+tree
+undo
+tree
+
+# Membership changes mark the container; read starts a new saved state.
+create rect extra 0 0 10 10
+addto flowchart extra
+tree
+read labels.svg
+tree
+canvas 400 300
+tree

@@ -19,7 +19,8 @@
     "@svgframe/plugin-builtin-shapes": "0.2.0",
     "@svgframe/plugin-command-dir": "0.2.0",
     "@svgframe/plugin-command-stats": "0.2.0",
-    "@svgframe/plugin-shape-box": "0.2.0"
+    "@svgframe/plugin-shape-box": "0.2.0",
+    "@svgframe/plugin-tree-star": "0.2.0"
   },
   "devDependencies": {
     "@types/node": "^22.20.5",

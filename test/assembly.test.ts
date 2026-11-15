@@ -10,8 +10,8 @@ import { TranscriptRunner } from './support/TranscriptRunner.js';
 // on main both methods must agree, so nothing is skipped here.)
 const runner = new TranscriptRunner();
 const methodB = ['--config', resolve('plugins.config.json')];
-const sessions = ['cli-1', 'cli-2-flowchart', 'cli-3-regression', 'cli-4-commands', 'cli-5-box', 'cli-6-box-rules'];
-const recorded = ['cli-4-commands', 'cli-5-box', 'cli-6-box-rules'];
+const sessions = ['cli-1', 'cli-2-flowchart', 'cli-3-regression', 'cli-4-commands', 'cli-5-box', 'cli-6-box-rules', 'cli-7-tree-labels'];
+const recorded = ['cli-4-commands', 'cli-5-box', 'cli-6-box-rules', 'cli-7-tree-labels'];
 
 test('method A and method B install the same plugins, in the same order, with the same options', () => {
   const plugins = runner.plugins();

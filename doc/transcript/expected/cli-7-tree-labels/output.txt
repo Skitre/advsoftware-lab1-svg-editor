@@ -1,0 +1,70 @@
+svg-editor 0.1 — type 'help' for commands
+canvas 800x600 created
+svg (800x600)
+g#flowchart created
+box#n1 created (g#n1 + rect#n1-rect + text#n1-label) in g#flowchart
+line#arrow1 created in g#flowchart
+svg (800x600) *
+└── g#flowchart *
+    ├── g#n1 (box) *
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9 *
+    │   └── text#n1-label  (140,135) "处理数据" *
+    └── line#arrow1  (280,130) -> (520,130)  stroke=black *
+saved to labels.svg (5 elements)
+svg (800x600)
+└── g#flowchart
+    ├── g#n1 (box)
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9
+    │   └── text#n1-label  (140,135) "处理数据"
+    └── line#arrow1  (280,130) -> (520,130)  stroke=black
+box#n1 fill propagated to n1-rect
+svg (800x600) *
+└── g#flowchart
+    ├── g#n1 (box)
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#f5a623 *
+    │   └── text#n1-label  (140,135) "处理数据"
+    └── line#arrow1  (280,130) -> (520,130)  stroke=black
+undone: box#n1 fill propagated to n1-rect
+svg (800x600)
+└── g#flowchart
+    ├── g#n1 (box)
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9
+    │   └── text#n1-label  (140,135) "处理数据"
+    └── line#arrow1  (280,130) -> (520,130)  stroke=black
+line#arrow1 moved by (0,10)
+svg (800x600) *
+└── g#flowchart
+    ├── g#n1 (box)
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9
+    │   └── text#n1-label  (140,135) "处理数据"
+    └── line#arrow1  (280,140) -> (520,140)  stroke=black *
+undone: line#arrow1 moved by (0,10)
+svg (800x600)
+└── g#flowchart
+    ├── g#n1 (box)
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9
+    │   └── text#n1-label  (140,135) "处理数据"
+    └── line#arrow1  (280,130) -> (520,130)  stroke=black
+rect#extra created
+rect#extra moved into g#flowchart
+svg (800x600) *
+└── g#flowchart *
+    ├── g#n1 (box)
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9
+    │   └── text#n1-label  (140,135) "处理数据"
+    ├── line#arrow1  (280,130) -> (520,130)  stroke=black
+    └── rect#extra  x=0 y=0 w=10 h=10 *
+read labels.svg (5 elements)
+svg (800x600)
+└── g#flowchart
+    ├── g#n1 (box)
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9
+    │   └── text#n1-label  (140,135) "处理数据"
+    └── line#arrow1  (280,130) -> (520,130)  stroke=black
+canvas resized to 400x300
+svg (400x300) *
+└── g#flowchart
+    ├── g#n1 (box)
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9
+    │   └── text#n1-label  (140,135) "处理数据"
+    └── line#arrow1  (280,130) -> (520,130)  stroke=black

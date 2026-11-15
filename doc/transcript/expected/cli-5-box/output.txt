@@ -9,13 +9,13 @@ undone: box#n2 moved by (0,100)
 box#n2 fill propagated to n2-rect
 box#n2 label updated: "处理数据 v2"
 undone: box#n2 label updated: "处理数据 v2"
-svg (800x600)
-└── g#flowchart
-    ├── g#n1 (box)
-    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9
-    │   └── text#n1-label  (140,135) "开始"
-    ├── g#n2 (box)
-    │   ├── rect#n2-rect  x=520 y=100 w=160 h=60  fill=#f5a623
-    │   └── text#n2-label  (540,135) "处理数据"
-    └── line#arrow1  (280,130) -> (520,130)  stroke=black
+svg (800x600) *
+└── g#flowchart *
+    ├── g#n1 (box) *
+    │   ├── rect#n1-rect  x=120 y=100 w=160 h=60  fill=#4a90d9 *
+    │   └── text#n1-label  (140,135) "开始" *
+    ├── g#n2 (box) *
+    │   ├── rect#n2-rect  x=520 y=100 w=160 h=60  fill=#f5a623 *
+    │   └── text#n2-label  (540,135) "处理数据" *
+    └── line#arrow1  (280,130) -> (520,130)  stroke=black *
 saved to flowchart-box.svg (8 elements)

@@ -9,6 +9,8 @@ import commandStats from '@svgframe/plugin-command-stats';
 import commandStatsPackage from '@svgframe/plugin-command-stats/package.json' with { type: 'json' };
 import shapeBox from '@svgframe/plugin-shape-box';
 import shapeBoxPackage from '@svgframe/plugin-shape-box/package.json' with { type: 'json' };
+import treeStar from '@svgframe/plugin-tree-star';
+import treeStarPackage from '@svgframe/plugin-tree-star/package.json' with { type: 'json' };
 import { EditorApplication } from './host/EditorApplication.js';
 import { LaunchOptions } from './host/LaunchOptions.js';
 import type { PluginSource } from './host/PluginInstaller.js';
@@ -28,6 +30,7 @@ const codeAssembled: readonly PluginSource[] = [
   { module: '@svgframe/plugin-command-stats', plugin: commandStats, packageJson: commandStatsPackage },
   { module: '@svgframe/plugin-command-dir', plugin: commandDir, packageJson: commandDirPackage },
   { module: '@svgframe/plugin-shape-box', plugin: shapeBox, packageJson: shapeBoxPackage },
+  { module: '@svgframe/plugin-tree-star', plugin: treeStar, packageJson: treeStarPackage },
 ];
 
 let options = LaunchOptions.parse([]);
